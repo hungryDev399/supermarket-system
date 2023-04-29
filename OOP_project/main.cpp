@@ -8,7 +8,7 @@ std::string admin_pass = "admin";
 std::string admin_username = "admin";
 
 // atomic bool for for stopping and starting the input detection process
-//std::atomic<bool> g_running(true);
+std::atomic<bool> g_running(true);
 
 
 // Thread function to continuously check for input
@@ -26,7 +26,7 @@ void inputThread()
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 }
-int main1() {
+int main() {
     std::thread macro_detection_thread(inputThread);
     // start of program
 

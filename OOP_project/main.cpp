@@ -8,8 +8,7 @@ std::string admin_pass = "admin";
 std::string admin_username = "admin";
 
 // atomic bool for for stopping and starting the input detection process
-std::atomic<bool> g_running(true);
-
+//std::atomic<bool> g_running(true);
 
 
 // Thread function to continuously check for input

@@ -44,19 +44,22 @@ template <typename T, typename... Args>
 	return results;
 }
 
+
  /*template<typename T>
  void print(T& T) {
 	 cout << *T;
- }*/
+ }
+ */
 
 
-
- int main() {
-	 std::vector<int> returns;
+ int main10() {
+	 const int iterations = 8000;
+		std::vector<int> returns;
 	 {
 		 objectLifetimeTimer timer;
-		dynamicFunctionPointer<int> fun2_ptr = { &fun1};
-		returns = asyncFor(8000, fun2_ptr);
+		//dynamicFunctionPointer<int> fun2_ptr = { &fun1};
+		//returns = asyncFor(8000, fun2_ptr);
+		 auto returns = asyncFor<int>(iterations, dynamicFunctionPointer<int>{&fun1});
 		//dynamicFunctionPointer<int> fun2_ptr = { &fun1 };
 		//returns = asyncFor(70000, fun2_ptr);
  }
@@ -65,8 +68,10 @@ template <typename T, typename... Args>
 	 {
 		 objectLifetimeTimer timer;
 		 std::vector<int> returns;
-		 for (int i = 0; i <= 8000;i++) {
+		 std::array<int, (iterations)> returns2;
+		 for (int i = 0; i < 8000;i++) {
 			 std::cout << "Hello 2\n";
+			 returns2[i] = 0;
 			 //int* arr = new int[2];
 			 //arr[0] = 5;
 			 //arr[1] = 10;
@@ -75,9 +80,9 @@ template <typename T, typename... Args>
 	 }
 	//std::cout << returns[0][1];
 	//delete the heap allocated pointers
-	for (auto ptr : returns) {
+	//for (auto ptr : returns) {
 		//delete[] ptr;
-	}
+	//}
 	
 	 
 	return 0;

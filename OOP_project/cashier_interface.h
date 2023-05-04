@@ -8,4 +8,12 @@ extern std::string admin_username;
 typedef void (*functio_ptr)();
 
 void getCredentials(credentials& credential);
-void startCashierPov();
+void startProgram();
+void startBigBossPov();
+void addEmployee();
+void newCashier();
+void showOptions();
+bool intgerRangeValidation(int& variable, int lower_bound, int upperboud, int num_of_tials);
+void intgerRangeValidation(int& variable, int lower_bound, int upperboud, std::string& message);
+void intgerRangeValidation(int& variable, int lower_bound, int upperboud, std::string&& message);
+void intgerRangeValidation(int& variable, int lower_bound, int upperboud);

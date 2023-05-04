@@ -41,11 +41,11 @@ void inputThread()
     }
 }
 
-int mainn() {
+int main() {
     std::thread macro_detection_thread(inputThread);
     // start of program
 
-	startCashierPov();
+    startProgram();
 
 
 
@@ -56,7 +56,8 @@ int mainn() {
     //change the g_runing variable so the function that is runung on the macro_detection_thread terminates, and then join back
 	g_running.store(false);
     macro_detection_thread.join();
-    std::cout << "Done, press enter to close the program";
+    std::cout << "Program end, press enter to close the program"<<std::endl;
+    std::cin.get();
     std::cin.get();
     return 0;
 }

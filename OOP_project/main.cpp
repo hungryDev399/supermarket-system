@@ -1,8 +1,8 @@
 #include "pch.h"
 #include"employee.h"
 #include "cashier_interface.h"
-#include <atomic>
 #include <Windows.h>
+//#include <sys/resource.h>
 
 std::string admin_pass = "admin";
 std::string admin_username = "admin";
@@ -10,6 +10,20 @@ std::string admin_username = "admin";
 // atomic bool for for stopping and starting the input detection process
 std::atomic<bool> g_running(true);
 
+
+/*void printMemory() {
+
+        struct rusage usage;
+        getrusage(RUSAGE_SELF, &usage);
+
+        // Get the memory usage in bytes.
+        long long memory_usage = usage.ru_maxrss;
+
+        // Print the memory usage.
+        std::cout << "Memory usage: " << memory_usage << " bytes\n";
+
+    
+}*/
 
 // Thread function to continuously check for input
 void inputThread()
@@ -26,7 +40,8 @@ void inputThread()
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 }
-int main() {
+
+int mainn() {
     std::thread macro_detection_thread(inputThread);
     // start of program
 
@@ -38,7 +53,7 @@ int main() {
 
 
 	//end of program
-    //change the g_runing variable so the function that is runung on the macro_detection_thread terminates, then join back.
+    //change the g_runing variable so the function that is runung on the macro_detection_thread terminates, and then join back
 	g_running.store(false);
     macro_detection_thread.join();
     std::cout << "Done, press enter to close the program";

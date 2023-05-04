@@ -9,5 +9,8 @@ struct dynamicFunctionPointer {
 	T(*func_pointer)(Args...);
 };
 
+template <typename T, int itrerations, typename... Args>
+std::array<T, itrerations> asyncFor(dynamicFunctionPointer<T, Args...> func_ptr_in, Args... args);
+
 template <typename T, typename... Args>
 std::vector<T> asyncFor(int itrerations, dynamicFunctionPointer<T, Args...> func_ptr_in, Args... args);

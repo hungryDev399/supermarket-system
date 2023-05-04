@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\learning">
+      <UniqueIdentifier>{52045015-ebd5-468b-9a90-86ad1bd98e34}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -38,6 +41,27 @@
     </ClCompile>
     <ClCompile Include="testing 2.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="asyncloopsandbox.cpp">
+      <Filter>Source Files\learning</Filter>
+    </ClCompile>
+    <ClCompile Include="data_struct.cpp">
+      <Filter>Source Files\learning</Filter>
+    </ClCompile>
+    <ClCompile Include="allocation_metrics.cpp">
+      <Filter>Source Files\learning</Filter>
+    </ClCompile>
+    <ClCompile Include="LandRValues.cpp">
+      <Filter>Source Files\learning</Filter>
+    </ClCompile>
+    <ClCompile Include="array_features.cpp">
+      <Filter>Source Files\learning</Filter>
+    </ClCompile>
+    <ClCompile Include="iteratirs_learn.cpp">
+      <Filter>Source Files\learning</Filter>
+    </ClCompile>
+    <ClCompile Include="myVector.cpp">
+      <Filter>Source Files\learning</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,8 +1,16 @@
 #include "pch.h"
-#include "useful_tools.h"
+/*#include "useful_tools.h"
 #include "useful_structs.cpp"
 
+template <typename T>
+struct DynamicFutureVector {
+	std::vector<std::future<T>> generated_vector;
+};
 
+template <typename T, typename... Args>
+struct dynamicFunctionPointer {
+	T(*func_pointer)(Args...);
+};
 
 
 
@@ -88,4 +96,4 @@ int maintest() {
 
 
 	return 0;
-}
+}*/

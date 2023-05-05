@@ -1,16 +1,8 @@
 #include "pch.h"
-/*#include "useful_tools.h"
-#include "useful_structs.cpp"
+#include "useful_tools.h"
+#include "useful_structs.h"
 
-template <typename T>
-struct DynamicFutureVector {
-	std::vector<std::future<T>> generated_vector;
-};
 
-template <typename T, typename... Args>
-struct dynamicFunctionPointer {
-	T(*func_pointer)(Args...);
-};
 
 
 
@@ -61,9 +53,54 @@ void asyncFor(T* results, dynamicFunctionPointer<T, Args...> func_ptr_in, Args..
 
 }
  
+bool intgerRangeValidation(int& variable, int lower_bound, int upperboud, int num_of_tials) {
+	int trials = 0;
+	bool success = 1;
+	while ((variable < lower_bound || variable > upperboud)) {
+		std::cout << "Input out of range please try again:" << std::endl;
+		std::cin >> variable;
+		if (trials <= num_of_tials) {
+			success = 0;
+			break;
+		}
+		trials++;
+	}
+	return success;
+}
+
+void intgerRangeValidation(int& variable, int lower_bound, int upperboud) {
+
+	bool success = 1;
+	while ((variable < lower_bound || variable > upperboud)) {
+		std::cout << "Input out of range please try again:" << std::endl;
+		std::cin >> variable;
+	}
+
+}
+
+void intgerRangeValidation(int& variable, int lower_bound, int upperboud, std::string&& message) {
+
+	bool success = 1;
+	while ((variable < lower_bound || variable > upperboud)) {
+		std::cout << message << std::endl;
+		std::cin >> variable;
+	}
+
+}
 
 
-int maintest() {
+void intgerRangeValidation(int& variable, int lower_bound, int upperboud, std::string& message) {
+
+	bool success = 1;
+	while ((variable < lower_bound || variable > upperboud)) {
+		std::cout << message << std::endl;
+		std::cin >> variable;
+	}
+
+}
+
+
+/*int maintest() {
 	const int iterations = 8000;
 
 	int returns[iterations];

@@ -14,3 +14,9 @@ std::array<T, itrerations> asyncFor(dynamicFunctionPointer<T, Args...> func_ptr_
 
 template <typename T, typename... Args>
 std::vector<T> asyncFor(int itrerations, dynamicFunctionPointer<T, Args...> func_ptr_in, Args... args);
+
+
+bool intgerRangeValidation(int& variable, int lower_bound, int upperboud, int num_of_tials);
+void intgerRangeValidation(int& variable, int lower_bound, int upperboud, std::string& message);
+void intgerRangeValidation(int& variable, int lower_bound, int upperboud, std::string&& message);
+void intgerRangeValidation(int& variable, int lower_bound, int upperboud);

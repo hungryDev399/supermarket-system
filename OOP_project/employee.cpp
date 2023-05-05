@@ -2,6 +2,7 @@
 #include <random>
 #include <limits>
 #include "employee.h"
+#include "useful_tools.h"
 
 std::string generateID() {
     int max_int = std::numeric_limits<int>::max();
@@ -85,6 +86,14 @@ int EMPLOYEE::get_permission_level() {
     return permission_level;
 }
 
+
+
+
+
+//Cashier calss
+
+
+
 void CASHIER::set_total_products_sold_by_codesales(int total_products_sold_by_codesales) {
     this->total_products_sold_by_codesales = total_products_sold_by_codesales;
 }
@@ -120,6 +129,17 @@ CASHIER::CASHIER(const std::string& name, const int salary, const int age,const 
     set_ID(generateID());
 }
 
+void CASHIER::construct_cashier(const std::string& name, const int salary, const int age, const std::string& phone_number) {
+    set_name(name);
+    set_job_title("Cashier");
+    set_salary(salary);
+    set_age(age);
+    set_status("New");
+    setDate();
+    set_permission_level(1);
+    set_ID(generateID());
+}
+
 void CASHIER::redeem_points(int current_points, std::string user_id) {
     //add code here
 }
@@ -138,5 +158,198 @@ void CASHIER::check_user(std::string phone_number) {
     }
 
 
+
+//manager class
+void MANAGER::set_Bonus(int bonus) {
+	this->bonus = bonus;
+}
+int MANAGER::getBonus() { return bonus; }
+MANAGER::MANAGER(const std::string& name, const int salary, const int age, const std::string& phone_number) {
+	set_name(name);
+	set_job_title("Manager");
+	set_salary(salary);
+	set_age(age);
+	set_status("New");
+	setDate();
+	set_permission_level(2);
+	set_ID(generateID());
+}
+
+void MANAGER::construct_manager(const std::string& name, const int salary, const int age, const std::string& phone_number) {
+    set_name(name);
+    set_job_title("Manager");
+    set_salary(salary);
+    set_age(age);
+    set_status("New");
+    setDate();
+    set_permission_level(2);
+    set_ID(generateID());
+}
+
+
+MANAGER::MANAGER(){}
+
+
+void MANAGER::addCashier(CASHIER& cashier) {
+    std::string name, phone_number;
+    int salary, age;
+    std::cout << "Enter the name of the cashier:" << std::endl;
+    std::cin >> name;
+    std::cout << "Enter the salary of the cashier:" << std::endl;
+    std::cin >> salary;
+    intgerRangeValidation(salary, 0, std::numeric_limits<int>::max());
+    std::cout << "Enter the age of the cashier:" << std::endl;
+    std::cin >> age;
+    intgerRangeValidation(age, 18, 125, "Cashier is too young/old to work, please try again");
+
+    int choice = 0;
+    while (choice != 1) {
+        std::cout << "Enter the phone number of the cashier:" << std::endl;
+        std::cin >> phone_number;
+        std::cout << "The phone number you entered is: " << phone_number << std::endl;
+        std::cout << "Is the phone number correct?\n 1.Yes\n 2.No" << std::endl;
+
+        std::cin >> choice;
+        if (choice == 1) {
+            std::cout << "Cashier added successfully" << std::endl;
+
+        }
+    }
+    //creating the cashier object
+    cashier.construct_cashier(name, salary, age, phone_number);
+
+}
+
+
+
+
+void MANAGER::appenedMessage(std::string message) {
+    messages_recieved.push_back(message);
+}
+void MANAGER::showMessages() {
+    for (std::string message : messages_recieved) {
+		std::cout << std::endl << message << std::endl;
+	}
+}
+
+//BIGBOSS
+
+//function defenetions
+void BIGBOSS::resetPassword() {
+    int choice = 0;
+    while (choice != 1) {
+        std::string new_password;
+		std::cout << "Enter the new password:" << std::endl;
+		std::cin >> new_password;
+		std::cout << "The new password is: " << new_password << std::endl;
+		std::cout << "Is the password correct?\n 1.Yes\n 2.No" << std::endl;
+		std::cin >> choice;
+        if (choice == 1) {
+			std::cout << "Password changed successfully" << std::endl;
+			password = new_password;
+		}
+        else {
+			std::cout << "Please try again" << std::endl;
+		}
+    }
+
+}
+void BIGBOSS::resetUsername() {
+    std::string new_username;
+	std::cout << "Enter the new username:" << std::endl;
+	std::cin >> new_username;
+	std::cout << "The new username is: " << new_username << std::endl;
+	std::cout << "Is the username correct?\n 1.Yes\n 2.No" << std::endl;
+	int choice = 0;
+	std::cin >> choice;
+    if (choice == 1) {
+		std::cout << "Username changed successfully" << std::endl;
+		username = new_username;
+	}
+    else {
+		std::cout << "Username has not been changed" << std::endl;
+	}
+}
+void BIGBOSS::setUsername(std::string username) {
+	this->username = username;
+}
+void BIGBOSS::setPassword(std::string password) {
+	this->password = password;
+}
+std::string BIGBOSS::getUsername() { return username; }
+std::string BIGBOSS::getPassword() { return password; }
+
+void BIGBOSS::sendMessageToManager(std::string message, MANAGER manager) {
+    manager.appenedMessage(message);
+}
+
+BIGBOSS::BIGBOSS() {
+    username = "admin";
+    password = "admin";
+
+}
+
+
+
+void BIGBOSS::addCashier(CASHIER& cashier) {
+    std::string name, phone_number;
+    int salary, age;
+    std::cout << "Enter the name of the cashier:" << std::endl;
+    std::cin >> name;
+    std::cout << "Enter the salary of the cashier:" << std::endl;
+    std::cin >> salary;
+    intgerRangeValidation(salary, 0, std::numeric_limits<int>::max());
+    std::cout << "Enter the age of the cashier:" << std::endl;
+    std::cin >> age;
+    intgerRangeValidation(age, 18, 125, "Cashier is too young/old to work, please try again");
+
+    int choice = 0;
+    while (choice != 1) {
+        std::cout << "Enter the phone number of the cashier:" << std::endl;
+        std::cin >> phone_number;
+        std::cout << "The phone number you entered is: " << phone_number << std::endl;
+        std::cout << "Is the phone number correct?\n 1.Yes\n 2.No" << std::endl;
+
+        std::cin >> choice;
+        if (choice == 1) {
+            std::cout << "Cashier added successfully" << std::endl;
+
+        }
+    }
+    //creating the cashier object
+    cashier.construct_cashier(name, salary, age, phone_number);
+
+}
+
+void BIGBOSS::addManager(MANAGER& manager) {
+    std::string name, phone_number;
+    int salary, age;
+    std::cout << "Enter the name of the Manager:" << std::endl;
+    std::cin >> name;
+    std::cout << "Enter the salary of the Manager:" << std::endl;
+    std::cin >> salary;
+    intgerRangeValidation(salary, 0, std::numeric_limits<int>::max());
+    std::cout << "Enter the age of the Manager:" << std::endl;
+    std::cin >> age;
+    intgerRangeValidation(age, 18, 125, "Manager is too young/old to work, please try again");
+
+    int choice = 0;
+    while (choice != 1) {
+        std::cout << "Enter the phone number of the Manager:" << std::endl;
+        std::cin >> phone_number;
+        std::cout << "The phone number you entered is: " << phone_number << std::endl;
+        std::cout << "Is the phone number correct?\n 1.Yes\n 2.No" << std::endl;
+
+        std::cin >> choice;
+        if (choice == 1) {
+            std::cout << "Manager added successfully" << std::endl;
+        }
+        
+    }
+
+    //creating the cashier object
+    manager.construct_manager(name, salary, age, phone_number);
+ 
+}
 
 

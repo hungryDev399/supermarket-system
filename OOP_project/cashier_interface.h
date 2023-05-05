@@ -10,10 +10,8 @@ typedef void (*functio_ptr)();
 void getCredentials(credentials& credential);
 void startProgram();
 void startBigBossPov();
-void addEmployee();
+/*void addEmployee();
 void newCashier();
-void showOptions();
-bool intgerRangeValidation(int& variable, int lower_bound, int upperboud, int num_of_tials);
-void intgerRangeValidation(int& variable, int lower_bound, int upperboud, std::string& message);
-void intgerRangeValidation(int& variable, int lower_bound, int upperboud, std::string&& message);
-void intgerRangeValidation(int& variable, int lower_bound, int upperboud);
+void showOptions();*/
+void showBigBossOptions(BIGBOSS* big_boss_ptr);
+

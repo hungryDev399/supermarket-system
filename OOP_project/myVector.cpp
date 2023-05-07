@@ -162,17 +162,38 @@ public:
 		m_size = 0;
 	}
 
-	void insert(unsigned short int index) {
-		if (index >= m_size) 
+	void insert(unsigned short int index, const T& element) {
+		if (index >= m_size || index < 0) 
 			std::cout << "Warning! You are trying to access an invalid index" << std::endl;
 		
 		m_size++;
 		if (m_size > m_capacity) {
 			reAlloca(m_capacity + m_capacity / 2);
 		}
+		//shifting elements above the index
+		for (int i = m_size; i >= index; i--) {
+			m_data[i + 1] = m_data[i];
+		}
 
-		
+		m_data[index] = element;
 	}
+
+	void insert(unsigned short int index, T&& element) {
+		if (index >= m_size || index < 0)
+			std::cout << "Warning! You are trying to access an invalid index" << std::endl;
+
+		m_size++;
+		if (m_size > m_capacity) {
+			reAlloca(m_capacity + m_capacity / 2);
+		}
+		//shifting elements above the index
+		for (int i = m_size; i >= index; i--) {
+			m_data[i + 1] = std::move(m_data[i]);
+		}
+
+		m_data[index] = std::move(element);
+	}
+
 
 	const T& operator[](size_t index) const {
 		if (index >= m_size) {
@@ -186,7 +207,6 @@ public:
 	T& operator[](size_t index){
 		return m_data[index];
 	}
-
 
 };
 
@@ -219,8 +239,12 @@ int mainvector() {
 		vector.PopBack();
 		printVector(vector);
 		vector.clear();
+		//vector.insert(1, 559);
+		//printVector(vector);
+		int x = 600;
+		vector.insert(2, x);
 		printVector(vector);
-
+	
 	
 	std::cin.get();
 	return 0;

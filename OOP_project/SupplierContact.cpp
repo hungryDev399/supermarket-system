@@ -1,4 +1,4 @@
-
+/*
 #include "SupplierContact.h"
 using namespace std;
 
@@ -76,5 +76,5 @@ void SupplierContact::emailSupplier() {
 
 void SupplierContact::product_request() {
 	// send an email to the supplier requesting a product
-}
+}*/
 

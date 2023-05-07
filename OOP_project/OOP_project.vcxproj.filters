@@ -16,12 +16,15 @@
     <Filter Include="Source Files\learning">
       <UniqueIdentifier>{52045015-ebd5-468b-9a90-86ad1bd98e34}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\gpt_api">
+      <UniqueIdentifier>{401df515-8b18-4f6d-ad99-6e10b607ef32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cashier_interface.cpp">
+    <ClCompile Include="start_program.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
@@ -31,9 +34,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="learning_about_threads.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="useful_structs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="useful tools.cpp">
@@ -63,6 +63,24 @@
     <ClCompile Include="myVector.cpp">
       <Filter>Source Files\learning</Filter>
     </ClCompile>
+    <ClCompile Include="SupplierContact.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="useful_structs.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cart.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="product.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="employee.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gpt_implementation.cpp">
+      <Filter>Source Files\gpt_api</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="employee.h">
@@ -77,5 +95,31 @@
     <ClInclude Include="useful_tools.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SupplierContact.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cart.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="product.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="json.hpp">
+      <Filter>Source Files\gpt_api</Filter>
+    </ClInclude>
+    <ClInclude Include="openai.hpp">
+      <Filter>Source Files\gpt_api</Filter>
+    </ClInclude>
+    <ClInclude Include="gpt_implementation.h">
+      <Filter>Source Files\gpt_api</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\vscode projects\C C++\OOP_Project\.vscode\c_cpp_properties.json">
+      <Filter>Source Files\gpt_api</Filter>
+    </None>
+    <None Include="settings.json">
+      <Filter>Source Files\gpt_api</Filter>
+    </None>
   </ItemGroup>
 </Project>

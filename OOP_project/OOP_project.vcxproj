@@ -116,7 +116,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
@@ -144,8 +144,11 @@
   <ItemGroup>
     <ClCompile Include="array_features.cpp" />
     <ClCompile Include="asyncloopsandbox.cpp" />
-    <ClCompile Include="cashier_interface.cpp" />
+    <ClCompile Include="cart.cpp" />
+    <ClCompile Include="gpt_implementation.cpp" />
+    <ClCompile Include="start_program.cpp" />
     <ClCompile Include="data_struct.cpp" />
+    <ClCompile Include="employee.cpp" />
     <ClCompile Include="iteratirs_learn.cpp" />
     <ClCompile Include="LandRValues.cpp" />
     <ClCompile Include="learning_about_threads.cpp" />
@@ -155,17 +158,29 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">pch.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="product.cpp" />
+    <ClCompile Include="SupplierContact.cpp" />
     <ClCompile Include="testing 2.cpp" />
     <ClCompile Include="allocation_metrics.cpp" />
     <ClCompile Include="testingcpp.cpp" />
     <ClCompile Include="useful tools.cpp" />
-    <ClCompile Include="useful_structs.cpp" />
+    <ClCompile Include="useful_structs.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cart.h" />
     <ClInclude Include="cashier_interface.h" />
     <ClInclude Include="employee.h" />
+    <ClInclude Include="gpt_implementation.h" />
+    <ClInclude Include="json.hpp" />
+    <ClInclude Include="openai.hpp" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="product.h" />
+    <ClInclude Include="SupplierContact.h" />
     <ClInclude Include="useful_tools.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\vscode projects\C C++\OOP_Project\.vscode\c_cpp_properties.json" />
+    <None Include="settings.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

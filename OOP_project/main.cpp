@@ -2,6 +2,7 @@
 #include"employee.h"
 #include "cashier_interface.h"
 #include <Windows.h>
+#include "gpt_implementation.h"
 //#include <sys/resource.h>
 
 std::string admin_pass = "admin";
@@ -11,19 +12,6 @@ std::string admin_username = "admin";
 std::atomic<bool> g_running(true);
 
 
-/*void printMemory() {
-
-        struct rusage usage;
-        getrusage(RUSAGE_SELF, &usage);
-
-        // Get the memory usage in bytes.
-        long long memory_usage = usage.ru_maxrss;
-
-        // Print the memory usage.
-        std::cout << "Memory usage: " << memory_usage << " bytes\n";
-
-    
-}*/
 
 // Thread function to continuously check for input
 void inputThread()
@@ -33,7 +21,8 @@ void inputThread()
         // Check for Ctrl+L input
         if (GetAsyncKeyState(VK_CONTROL) & GetAsyncKeyState('L') & 0x8000)
         {
-            std::cout <<std::endl<< "Doing something" << std::endl;
+            std::cout <<std::endl<< "Starting GPT..." << std::endl;
+            //talkToGPT();
         }
 
         // Sleep for a short duration to avoid high CPU usage

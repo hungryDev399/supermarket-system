@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <map>
 #include <memory>
+#include <stdio.h>
 #include <stack>
 #include <deque>
 #include <conio.h>

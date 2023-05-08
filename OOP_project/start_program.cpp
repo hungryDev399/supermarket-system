@@ -3,9 +3,9 @@
 #include "cashier_interface.h"
 #include <limits>
 #include "useful_tools.h"
+#include "DataBaseCode.h"
 
-
-
+Cashier cashier_db;
 void getCredentials(credentials& credential) {
     std::cout << "Enter username: "<< std::endl;
     std::cin >> credential.username;
@@ -24,14 +24,24 @@ void startProgram() {
     }
 
     if (option == 1) {
-        std::cout << "Under construction" << std::endl;
-        return;
+        int id;
+        std::cout << "Enter the id" << std::endl;
+        std::cin >> id;
+        CASHIER cashier = cashier_db.returnCashierAsAnObject(2);
+        // currently no validation
+        std::cout << "Welcome " << cashier.get_name() << std::endl;
+        startCashierPov(cashier);
     }
 
     if (option == 2) {
         startBigBossPov();
 
     }
+}
+
+void startCashierPov(CASHIER cashier) {
+    std::cout << "Welcome to your 9 to 5 job" << std::endl;
+
 }
 
 void startBigBossPov() {
@@ -91,16 +101,21 @@ void showBigBossOptions(BIGBOSS* big_boss_ptr) {
     }
 
 
-    CASHIER cashier;
-    MANAGER manager;
+    
+    
     if (option == 1) {
+        CASHIER cashier;
 		big_boss_ptr->addCashier(cashier);
+
 		//log int the cashier in the database
+        cashier_db.saveCashierObject(cashier);
 	}
     if (option == 2) {
+        MANAGER manager;
 		big_boss_ptr->addManager(manager);
-		//log int the manager in the database
+		//add construction
 	}
+    
 
 	
 }

@@ -518,7 +518,8 @@ private:
     }
 
 public:
-    CategoryModel           model     {*this};
+    CategoryModel           
+model     {*this};
     CategoryCompletion      completion{*this};
     CategoryEdit            edit      {*this};
     CategoryImage           image     {*this};

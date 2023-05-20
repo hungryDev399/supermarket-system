@@ -9,7 +9,7 @@ using namespace std;
 
 class CART : public CASHIER {
 private:
-    vector<string> product_codes;
+    vector<int> product_codes;
     vector<int> quantity;
     string user_id;
     float price;

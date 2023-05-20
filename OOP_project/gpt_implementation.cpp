@@ -23,6 +23,12 @@ void talkToGPT() {
         message = "You are a customer service agent. Here is your prompt from the customer:" + message;
 
         chat_json["messages"].push_back({ {"role", "user"}, {"content", message} });
+        try {
+            auto chat = openai::chat().create(chat_json);
+        }
+        catch (const std::exception& e) {
+            std::cerr << "Exception: " << e.what() << std::endl;
+        }
         auto chat = openai::chat().create(chat_json);
         auto out = chat.dump(0);
         const std::string response_content = out;

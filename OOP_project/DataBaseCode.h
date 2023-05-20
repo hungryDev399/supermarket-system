@@ -1,4 +1,4 @@
-#include <string>
+/*#include <string>
 #include <stdio.h>
 #include <sstream>
 #include <iostream>
@@ -247,7 +247,7 @@ public:
         }
     }
 
-    /*product returnProductAsAnObject(int id) {
+    product returnProductAsAnObject(int id) {
 		std::stringstream ss;
 		ss << "SELECT * FROM products WHERE id = " << id << ";";
 		std::string sql = ss.str();
@@ -279,7 +279,7 @@ public:
 			sqlite3_free(errMsg);
 			sqlite3_close(db);
 		}
-    }*/
+    }
 };
 
 
@@ -287,7 +287,7 @@ public:
 
 
 
-/*funcction to check if code exists
+funcction to check if code exists
 bool checkCode(int code) {
 	std::stringstream ss;
 	ss << "SELECT * FROM products WHERE id = " << code << ";";
@@ -302,10 +302,9 @@ bool checkCode(int code) {
 	}
 	return true;
 }
-*/
 
 
-/*
+
     For employee
     + id int
     + job title string
@@ -314,9 +313,9 @@ bool checkCode(int code) {
     + salary double
     + age int
     + permission level int
-*/
 
-/*
+
+
 class Products:public DBMS{
     public:
         Products() {

@@ -3,6 +3,7 @@
 #include <limits>
 #include "employee.h"
 #include "useful_tools.h"
+#include "Chasier.h"
 
 std::string generateID() {
     int max_int = std::numeric_limits<int>::max();
@@ -17,6 +18,7 @@ std::string generateID() {
     std::string ID = std::to_string(generated_num);
     return ID;
 }
+
 
 void EMPLOYEE::set_job_title(std::string job_title) {
     this->job_title = job_title;
@@ -91,8 +93,19 @@ int EMPLOYEE::get_permission_level() {
 
 
 //Cashier calss
+void CASHIER::set_phone_number(std::string phone_numberr) {
+    CASHIER::phone_number = phone_numberr;
+    }
+std::string CASHIER::get_phone_number() {
+    return phone_number;
+}
 
-
+void CASHIER::set_password(std::string password) {
+    CASHIER::password = password;
+}
+std::string CASHIER::get_password() {
+    return password;
+}
 
 void CASHIER::set_total_products_sold_by_codesales(int total_products_sold_by_codesales) {
     this->total_products_sold_by_codesales = total_products_sold_by_codesales;
@@ -136,6 +149,7 @@ void CASHIER::construct_cashier(const std::string& name, const int salary, const
     set_age(age);
     set_status("New");
     setDate();
+    set_phone_number(phone_number);
     set_permission_level(1);
     set_ID(generateID());
 }
@@ -156,6 +170,9 @@ void CASHIER::AddUser(std::string phone_number) {
 void CASHIER::check_user(std::string phone_number) {
         //add code here
     }
+void CASHIER::newOrder(CASHIER& cashier, Cashier& cashier_db) {
+
+}
 
 
 

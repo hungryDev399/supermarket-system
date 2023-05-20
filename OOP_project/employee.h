@@ -4,7 +4,7 @@
 #include <random>
 #include <limits>
 #include "useful_tools.h"
-
+#include "Chasier.h"
 std::string generateID();
 
 
@@ -23,6 +23,7 @@ public:
     void set_permission_level(int permission_level);
     void setDate();
 
+
     std::string get_job_title();
     std::string get_name();
     std::string get_ID();
@@ -35,6 +36,7 @@ public:
 
 
 class CASHIER : public EMPLOYEE {
+    std::string password, phone_number;
     int total_products_sold_by_codesales;
     float commission;
     std::vector<std::string> total_products_sold_by_code;
@@ -43,9 +45,13 @@ public:
     void set_total_products_sold_by_codesales(int total_products_sold_by_codesales);
     void set_commission(float commission);
     void set_total_products_sold_by_code(std::vector<std::string> total_products_sold_by_code);
+	void set_password(std::string);
+	void set_phone_number(std::string);
 
     int get_total_products_sold_by_codesales();
     float get_commission();
+    std::string get_phone_number();
+    std::string get_password();
     std::vector<std::string> get_total_products_sold_by_code();
 
     CASHIER(const std::string& name, const int salary, const int age, const std::string& phone_number);
@@ -56,6 +62,7 @@ public:
     void add_commission();
     void AddUser(std::string phone_number);
     void check_user(std::string phone_number);
+    void newOrder(CASHIER& cashier,Cashier& cashier_db);
 
 };
 

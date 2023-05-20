@@ -1,5 +1,6 @@
-#include "pch.h"
+/*#include "pch.h"
 #include "cart.h"
+#include <vector>
 
 //setters
 void CART::set_product_codes(vector<string> product_codes) {
@@ -16,7 +17,7 @@ void CART::set_price(float price) {
 }
 
 //getters
-vector<string> CART::get_product_codes() {
+vector<int> CART::get_product_codes() {
 	return product_codes;
 }
 vector<int> CART::get_quantity() {
@@ -31,12 +32,12 @@ float CART::get_price() {
 
 //methods
 void CART::add_item(PRODUCT* product, int quantity) {
-	product_codes.push_back(product->get_product_code());
+	product_codes.push_back(product->get_code());
 	this->quantity.push_back(quantity);
 }
 void CART::remove_item(PRODUCT* product) {
 	for (int i = 0;i < product_codes.size();i++) {
-		if (product_codes[i] == product->get_product_code()) {
+		if (product_codes[i] == product->get_code()) {
 			product_codes.erase(product_codes.begin() + i);
 			quantity.erase(quantity.begin() + i);
 		}
@@ -62,4 +63,4 @@ void RECEIPT::replace_item() {
 }
 void RECEIPT::refund() {
 	//add code here
-}
+}*/

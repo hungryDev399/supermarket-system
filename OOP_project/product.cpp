@@ -1,4 +1,4 @@
-#include "pch.h"
+/*#include "pch.h"
 #include "product.h"
 
 using namespace std;
@@ -57,4 +57,4 @@ PRODUCT::PRODUCT() {
 //methods
 void PRODUCT::generatecode() {
     product_code = to_string(rand() % 100000);
-}
+}*/

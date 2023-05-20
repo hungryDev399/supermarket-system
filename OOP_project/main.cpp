@@ -3,7 +3,7 @@
 #include "cashier_interface.h"
 #include <Windows.h>
 #include "gpt_implementation.h"
-
+#include <cstdlib>
 //#include <sys/resource.h>
 
 std::string admin_pass = "admin";
@@ -20,9 +20,10 @@ void inputThread()
     while (g_running.load())
     {
         // Check for Ctrl+L input
-        if (GetAsyncKeyState(VK_CONTROL) & GetAsyncKeyState('L') & 0x8000)
+        if (GetAsyncKeyState(VK_CONTROL) & GetAsyncKeyState('T') & 0x8000)
         {
             std::cout <<std::endl<< "Starting GPT..." << std::endl;
+            system("start cmd /k C:\\Users\\moabd\\source\\repos\\gpt\\gpt.exe");
             //talkToGPT();
         }
 
@@ -36,11 +37,6 @@ int main() {
     // start of program
 
     startProgram();
-
-
-
-
-
 
 	//end of program
     //change the g_runing variable so the function that is runung on the macro_detection_thread terminates, and then join back

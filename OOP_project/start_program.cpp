@@ -80,6 +80,7 @@ void startCashierPov(CASHIER cashier) {
                 PRODUCT product = product_db.returnProductAsAnObjectWithID(product_id);
                 //add product to order
                 cart.add_item(product, order_quantity);
+                //std::cout << product.get_quantity() << std::endl;
                 product_db.updateProductObject(product);
                 std::cout << "Do you want to add another product?\n 1. Yes\n 2. No" << std::endl;
                 int add_another;

@@ -4,10 +4,17 @@
 #include <random>
 #include <limits>
 #include "useful_tools.h"
-#include "Chasier.h"
+//#include "product_db.h"
+//#include "product_tag.h"
+//#include "Product.h"
+//#include "product_tag.h"
+//#include "Cashier_db.h"
+
+//#include "Product.h"
+//#include "product_tag.h"
 std::string generateID();
 
-
+class PRODUCT;
 class EMPLOYEE {
     std::string job_title, name, ID, status;
     int salary, age, permission_level;
@@ -62,7 +69,7 @@ public:
     void add_commission();
     void AddUser(std::string phone_number);
     void check_user(std::string phone_number);
-    void newOrder(CASHIER& cashier,Cashier& cashier_db);
+    //void newOrder(CASHIER& cashier,Cashier& cashier_db, Product& product_db);
 
 };
 
@@ -95,4 +102,7 @@ public:
     void sendMessageToManager(std::string message,MANAGER manager);
     std::string getUsername();
     std::string getPassword();
+    void addProduct(PRODUCT& product);
+
+ 
 };

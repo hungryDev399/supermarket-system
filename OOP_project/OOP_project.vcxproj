@@ -142,10 +142,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\Downloads\sqlite-amalgamation-3410200\sqlite-amalgamation-3410200\sqlite3.c" />
     <ClCompile Include="array_features.cpp" />
     <ClCompile Include="asyncloopsandbox.cpp" />
     <ClCompile Include="cart.cpp" />
+    <ClCompile Include="Cashier_db.h" />
+    <ClCompile Include="Chashier_db.cpp" />
     <ClCompile Include="gpt_implementation.cpp" />
+    <ClCompile Include="product_db.cpp" />
+    <ClCompile Include="product_tag.cpp" />
     <ClCompile Include="start_program.cpp" />
     <ClCompile Include="data_struct.cpp" />
     <ClCompile Include="employee.cpp" />
@@ -160,6 +165,7 @@
     </ClCompile>
     <ClCompile Include="product.cpp" />
     <ClCompile Include="SupplierContact.cpp" />
+    <ClCompile Include="supplier_tag.cpp" />
     <ClCompile Include="testing 2.cpp" />
     <ClCompile Include="allocation_metrics.cpp" />
     <ClCompile Include="testingcpp.cpp" />
@@ -169,20 +175,34 @@
   <ItemGroup>
     <ClInclude Include="cart.h" />
     <ClInclude Include="cashier_interface.h" />
+    <ClInclude Include="Chasier.h" />
+    <ClInclude Include="DataBaseCode.h" />
     <ClInclude Include="employee.h" />
     <ClInclude Include="gpt_implementation.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="openai.hpp" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="product.h" />
+    <ClInclude Include="Product.h" />
+    <ClInclude Include="product_db.h" />
+    <ClInclude Include="product_tag.h" />
+    <ClInclude Include="Supplier.h" />
     <ClInclude Include="SupplierContact.h" />
+    <ClInclude Include="supplier_tag.h" />
     <ClInclude Include="useful_tools.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\..\vscode projects\C C++\OOP_Project\.vscode\c_cpp_properties.json" />
+    <None Include="packages.config" />
     <None Include="settings.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\sqlite3_c_plus_plus.1.0.3\build\native\sqlite3_c_plus_plus.targets" Condition="Exists('..\packages\sqlite3_c_plus_plus.1.0.3\build\native\sqlite3_c_plus_plus.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\sqlite3_c_plus_plus.1.0.3\build\native\sqlite3_c_plus_plus.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sqlite3_c_plus_plus.1.0.3\build\native\sqlite3_c_plus_plus.targets'))" />
+  </Target>
 </Project>

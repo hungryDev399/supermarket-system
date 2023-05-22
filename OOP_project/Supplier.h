@@ -1,3 +1,4 @@
+#pragma once
 #include <string>
 #include <stdio.h>
 #include <sstream>
@@ -6,7 +7,7 @@
 #include <sqlite3.h>
 
 #include "supplier_tag.h"
-
+class supplier;
 class Supplier {
 public:
     Supplier() {

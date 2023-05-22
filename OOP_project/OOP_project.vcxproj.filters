@@ -19,6 +19,18 @@
     <Filter Include="Source Files\gpt_api">
       <UniqueIdentifier>{401df515-8b18-4f6d-ad99-6e10b607ef32}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\database">
+      <UniqueIdentifier>{b074ca3e-1971-4040-a07d-7f66e119b8c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\tag_headers">
+      <UniqueIdentifier>{7652bd2d-c8f7-4669-bae1-906db2f0543a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tag_cpp">
+      <UniqueIdentifier>{b8bf2470-14fe-4d3a-bf7b-5157e51a8a5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database_cpp">
+      <UniqueIdentifier>{58c111c0-2b4b-4ee1-a92f-4ed7f6d5ca4f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -81,6 +93,24 @@
     <ClCompile Include="gpt_implementation.cpp">
       <Filter>Source Files\gpt_api</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\Downloads\sqlite-amalgamation-3410200\sqlite-amalgamation-3410200\sqlite3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="product_tag.cpp">
+      <Filter>Source Files\tag_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="supplier_tag.cpp">
+      <Filter>Source Files\tag_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Chashier_db.cpp">
+      <Filter>Source Files\database_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Cashier_db.h">
+      <Filter>Header Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="product_db.cpp">
+      <Filter>Source Files\database_cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="employee.h">
@@ -101,9 +131,6 @@
     <ClInclude Include="cart.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="product.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="json.hpp">
       <Filter>Source Files\gpt_api</Filter>
     </ClInclude>
@@ -113,6 +140,27 @@
     <ClInclude Include="gpt_implementation.h">
       <Filter>Source Files\gpt_api</Filter>
     </ClInclude>
+    <ClInclude Include="DataBaseCode.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Chasier.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="Product.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="Supplier.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="product_tag.h">
+      <Filter>Header Files\tag_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="supplier_tag.h">
+      <Filter>Header Files\tag_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="product_db.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\..\vscode projects\C C++\OOP_Project\.vscode\c_cpp_properties.json">
@@ -121,5 +169,6 @@
     <None Include="settings.json">
       <Filter>Source Files\gpt_api</Filter>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

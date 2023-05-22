@@ -3,10 +3,14 @@
 #include "cashier_interface.h"
 #include <limits>
 #include "useful_tools.h"
-#include "Chasier.h"
-#include "Product.h"
+#include "Cashier_db.h"
+#include "product_tag.h"
+#include "product_db.h"
+//#include "Product.h"
+
 Cashier cashier_db;
 Product product_db;
+
 void getCredentials(credentials& credential) {
     std::cout << "Enter username: "<< std::endl;
     std::cin >> credential.username;
@@ -16,6 +20,7 @@ void getCredentials(credentials& credential) {
 
 void startProgram() {
 
+     product_db.deleteProductObject(4);
     
     int option;
     std::cout << "Choose an option:" << '\n' << "\t1. Login as a Cashier" << "\n\t2. Login as a Big Boss\n" << "Please Enter your Choice: ";
@@ -86,7 +91,7 @@ void startBigBossPov() {
 }
 
 void showBigBossOptions(BIGBOSS* big_boss_ptr) {
-    std::vector<std::string> options = { "1. Add a Cashier", "2. Add a Manager" };
+    std::vector<std::string> options = { "1. Add a Cashier", "2. Add a Manager","3.Add new product"};
     for (std::string o : options) {
         std::cout << o << std::endl;
     }
@@ -135,6 +140,25 @@ void showBigBossOptions(BIGBOSS* big_boss_ptr) {
 		big_boss_ptr->addManager(manager);
 		//add construction
 	}
+
+
+    if (option == 3) {
+        bool again = 1;
+        while (again) {
+            PRODUCT product;
+            big_boss_ptr->addProduct(product);
+            product_db.saveProductObject(product);
+            product_db.printProductDataBase();
+            std::cout << "Do you want to add another product? 1.yes 2.no" << std::endl;
+            int again_option;
+            std::cin >> again_option;
+            intgerRangeValidation(again_option, 1, 2);
+            if (again_option == 2) {
+				again = 0;
+			}
+
+        }
+    }
     
 
 	

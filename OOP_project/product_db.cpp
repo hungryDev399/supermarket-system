@@ -1,4 +1,4 @@
-/*#include <string>
+#include <string>
 #include <stdio.h>
 #include <sstream>
 #include <iomanip> 
@@ -6,10 +6,10 @@
 #include <sqlite3.h>
 
 #include "product_tag.h"
+#include "product_db.h"
 
-class Product {
-public:
-	Product() {
+
+	Product::Product() {
 		rc = sqlite3_open("DataBase/Product.db", &db);
 		if (rc) {
 			std::cerr << "Error opening SQLite3 database: " << sqlite3_errmsg(db) << std::endl;
@@ -27,7 +27,7 @@ public:
 		}
 	}
 
-	PRODUCT returnProductAsAnObjectWithID(int id) {
+	PRODUCT Product::returnProductAsAnObjectWithID(int id) {
 		std::stringstream ss;
 		ss << "SELECT * FROM product WHERE id = " << id << ";";
 		std::string sql = ss.str();
@@ -51,7 +51,7 @@ public:
 		return product;
 	}
 
-	PRODUCT returnProductAsAnObjectWithCode(int code) {
+	PRODUCT Product::returnProductAsAnObjectWithCode(int code) {
 		std::stringstream ss;
 		ss << "SELECT * FROM product WHERE code = " << code << ";";
 		std::string sql = ss.str();
@@ -75,7 +75,7 @@ public:
 		return product;
 	}
 
-	void saveProductObject(PRODUCT p) {
+	void Product::saveProductObject(PRODUCT p) {
 		std::stringstream ss;
 		ss << "INSERT INTO product (code, name, quantity, supplier, price, is_pizza) VALUES ('" << p.get_code() << "', '" << p.get_name() << "', " << p.get_quantity() << ", '" << p.get_product_supplier_id() << "', " << p.get_price() << ", " << p.get_is_pizza() << ");";
 		std::string sql = ss.str();
@@ -87,7 +87,7 @@ public:
 		}
 	}
 
-	void deleteProductObject(int id) {
+	void Product::deleteProductObject(int id) {
 		std::stringstream ss;
 		ss << "DELETE FROM product WHERE id = " << id << ";";
 		std::string sql = ss.str();
@@ -99,7 +99,7 @@ public:
 		}
 	}
 
-	void updateProductObject(PRODUCT p) {
+	void Product::updateProductObject(PRODUCT p) {
 		std::stringstream ss;
 		ss << "UPDATE product SET code = '" << p.get_code() << "', name = '" << p.get_name() << "', quantity = " << p.get_quantity() << ", supplier = '" << p.get_product_supplier_id() << "', price = " << p.get_price() << ", is_pizza = " << p.get_is_pizza() << " WHERE id = " << p.get_code() << ";";
 		std::string sql = ss.str();
@@ -111,7 +111,7 @@ public:
 		}
 	}
 
-	void printProductDataBase() {
+	void Product::printProductDataBase() {
 		std::cout << "----------------------------------------------------------------------------------------------------\n";
 		std::cout << "|\t\t\t\t      Product DataBase \t\t\t\t\t           |\n";
 		std::cout << "|--------------------------------------------------------------------------------------------------|\n";
@@ -143,7 +143,7 @@ public:
 		sqlite3_finalize(stmt);
 		std::cout << "----------------------------------------------------------------------------------------------------\n";
 	}
-	bool checkIfCodeExists(int code) {
+	bool Product::checkIfCodeExists(int code) {
 		std::stringstream ss;
 		ss << "SELECT * FROM product WHERE code = " << code << ";";
 		std::string sql = ss.str();
@@ -160,12 +160,7 @@ public:
 		}
 		return codeExists;
 	}
-	
 
 
 
-private:
-	sqlite3* db;
-	char* errMsg = 0;
-	int rc;
-};*/
+

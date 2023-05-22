@@ -3,8 +3,10 @@
 #include <limits>
 #include "employee.h"
 #include "useful_tools.h"
-#include "Chasier.h"
-
+#include "Cashier_db.h"
+#include "product_db.h"
+#include "product_tag.h"
+class Cashier;
 std::string generateID() {
     int max_int = std::numeric_limits<int>::max();
     //creating the generator engine
@@ -170,9 +172,10 @@ void CASHIER::AddUser(std::string phone_number) {
 void CASHIER::check_user(std::string phone_number) {
         //add code here
     }
-void CASHIER::newOrder(CASHIER& cashier, Cashier& cashier_db) {
 
-}
+//void CASHIER::newOrder(CASHIER& cashier, Cashier& cashier_db, Product& product_db) {
+    //add code
+//}
 
 
 
@@ -367,6 +370,41 @@ void BIGBOSS::addManager(MANAGER& manager) {
     //creating the cashier object
     manager.construct_manager(name, salary, age, phone_number);
  
+}
+
+
+void BIGBOSS::addProduct(PRODUCT& product) {
+    std::string name;
+    int quantity, price, product_supplier_id;
+    bool is_pizza;
+    std::cout<<"Please enter the name of the product: "<<std::endl;
+    std::cin>>name;
+    std::cout<<"Please enter the initial quantity of the product: "<<std::endl;
+    std::cin>>quantity;
+    intgerRangeValidation(quantity, 0, std::numeric_limits<int>::max());
+    std::cout<<"Please enter the price of the product: "<<std::endl;
+    std::cin>>price;
+    intgerRangeValidation(price, 0, std::numeric_limits<int>::max());
+    std::cout<<"Please enter the supplier id of the product: "<<std::endl;
+    std::cin>>product_supplier_id;
+    intgerRangeValidation(product_supplier_id, 0, std::numeric_limits<int>::max());
+    std::cout<<"Is the product a pizza?\n 1.Yes\n 0.No"<<std::endl;
+    std::cin>>is_pizza;
+    while (is_pizza != 0 && is_pizza != 1) {
+        std::cout << "Please enter a valid input" << std::endl;
+		std::cin >> is_pizza;
+    }
+
+    int choice = 0;
+    while (choice != 1) {
+		std::cout << "The product you entered is: " << name << std::endl;
+		std::cout << "Is the product correct?\n 1.Yes\n 2.No" << std::endl;
+		std::cin >> choice;
+        if (choice == 1) {
+			std::cout << "Product added successfully" << std::endl;
+		}
+	}
+	product.construct_product(name, quantity, price, product_supplier_id, is_pizza);
 }
 
 

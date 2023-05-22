@@ -38,6 +38,8 @@ private:
 	string phone_number;
 	string email;
 };
+void add_supplier();
+void view_supplier();
 
 #endif // SUPPLIER_H
 

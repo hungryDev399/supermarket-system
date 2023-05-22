@@ -1,6 +1,6 @@
 #include "product_tag.h"
-
-
+#include "supplier_tag.h"
+#include "Stock.h"
 PRODUCT::PRODUCT() {
 	this->code = 0;
 	this->name = "";
@@ -85,4 +85,129 @@ void PRODUCT::print_product() {
 	cout << "Product Supplier ID: " << this->product_supplier_id << endl;
 	cout << "Is Pizza: " << this->is_pizza << endl;
 	cout << "Price: " << this->price << endl;
+}
+
+void add_product() {
+	string name;
+	int supplier_id;
+	int quantity;
+	int price;
+	bool is_pizza;
+	string pizza_response;
+	cout << "Enter product name: ";
+	cin >> name;
+	cout << "Enter product quantity: ";
+	cin >> quantity;
+	cout << "Enter product price: ";
+	cin >> price;
+	cout << "Enter the supplier id: ";
+	cin >> supplier_id;
+	cout << "does this product happen to be an outrageously oversize pizza? (yes or no) ";
+	cin >> pizza_response;
+
+	is_pizza = (pizza_response == "yes" || pizza_response == "Yes");
+
+	PRODUCT new_product(name, quantity, supplier_id, price, is_pizza);
+
+	cout << "Product added successfully, " << new_product.get_name() << " code is " << new_product.get_code();
+}
+
+void view_product() {
+	int product_id;
+	cout << "Enter product code: ";
+	cin >> product_id;
+
+	Product p;
+	PRODUCT prod = p.returnProductAsAnObjectWithCode(product_id);
+	prod.print_product();
+	Stock s;
+	s.CheckLowStock(prod);
+
+	int choice1;
+	cout << endl << "1. Edit product details" << endl;
+	cout << "2. view product supplier" << endl;
+	cout << "any other number to return to options" << endl;
+	cout << "Enter your choice: ";
+	cin >> choice1;
+	switch (choice1){
+	case(1):{
+		//which detail to edit
+		int choice2;
+		cout << "1. Edit product name" << endl;
+		cout << "2. Edit product quantity" << endl;
+		cout << "3. Edit product price" << endl;
+		cout << "4. Edit product supplier" << endl;
+		cin >> choice2;
+		switch (choice2) {
+			case(1): {
+				string name;
+				cout << "Enter new name: ";
+				cin >> name;
+				prod.set_name(name);
+				p.saveProductObject(prod);
+				break;
+			}
+			case(2): {
+				//check add or remove quantity
+				int choice3;
+				cout << "1. Add quantity" << endl;
+				cout << "2. Remove quantity" << endl;
+				cout << "Enter your choice: ";
+				cin >> choice3;
+				switch (choice3) {
+				case(1): {
+						int quantity;
+						cout << "Enter quantity to add: ";
+						cin >> quantity;
+						Stock s;
+						s.addStock(prod, quantity);
+						break;
+					}
+				case(2): {
+						int quantity;
+						cout << "Enter quantity to remove: ";
+						cin >> quantity;
+						Stock s;
+						s.removeStock(prod, quantity);
+						break;
+					}
+				}
+
+				break;
+			}
+			case(3): {
+				int price;
+				cout << "Enter new price: ";
+				cin >> price;
+				prod.set_price(price);
+				p.saveProductObject(prod);
+				break;
+			}
+			case(4): {
+				int supplier_id;
+				cout << "Enter new supplier id: ";
+				cin >> supplier_id;
+				Stock s;
+				s.changeSupplier(prod, supplier_id);
+				break;
+			}
+			default: {
+			}
+			
+
+		}
+		break;
+	}
+	case(2): {
+		Supplier s;
+		s.returnSupplierAsAnObjectWithID(prod.get_product_supplier_id()).print_supplier();
+		break;
+		   }
+	default: {
+		return;
+	}
+
+	}
+
+
 }

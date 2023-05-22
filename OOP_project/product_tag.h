@@ -40,5 +40,8 @@ public:
 		int price;
 };
 
+void add_product();
+void view_product();
+
 #endif // PRODUCT_H
 

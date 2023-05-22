@@ -93,9 +93,6 @@
     <ClCompile Include="gpt_implementation.cpp">
       <Filter>Source Files\gpt_api</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\sqlite-amalgamation-3410200\sqlite-amalgamation-3410200\sqlite3.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="product_tag.cpp">
       <Filter>Source Files\tag_cpp</Filter>
     </ClCompile>
@@ -110,6 +107,9 @@
     </ClCompile>
     <ClCompile Include="product_db.cpp">
       <Filter>Source Files\database_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\SuperMarketSQLDataBase\sqlite3\sqlite3.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

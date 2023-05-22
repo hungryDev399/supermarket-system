@@ -32,6 +32,9 @@ void PRODUCT::construct_product(string name, int quantity, int price, int produc
 	//p1.saveProductObject(*this);
 }
 // getters
+int PRODUCT::get_id() {
+	return this->id;
+}
 int PRODUCT::get_code() {
 	return this->code;
 }
@@ -52,6 +55,9 @@ int PRODUCT::get_price() {
 }
 
 // setters
+void PRODUCT::set_id(int id) {
+	this->id = id;
+}
 void PRODUCT::set_code(int code) {
 	this->code = code;
 }

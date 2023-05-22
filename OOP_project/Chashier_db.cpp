@@ -15,7 +15,7 @@ Cashier::Cashier() {
             std::cerr << "Error opening SQLite3 database: " << sqlite3_errmsg(db) << std::endl;
         }
         else {
-            std::cout << "Opened SQLite3 database successfully" << std::endl;
+            //std::cout << "Opened SQLite3 database successfully" << std::endl;
         }
         const char* create_table = "CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, \
                                    job_title TEXT, name TEXT, status TEXT, salary REAL, age INTEGER, \

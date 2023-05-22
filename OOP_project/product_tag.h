@@ -16,8 +16,10 @@ public:
     int get_product_supplier_id();
     bool get_is_pizza();
     int get_price();
+    int get_id();
 
     // setters
+    void set_id(int id);
     void set_code(int code);
     void set_name(string name);
     void set_quantity(int quantity);
@@ -31,6 +33,7 @@ public:
 
 private:
     int code;
+    int id;
     string name;
     int quantity;
     int product_supplier_id;

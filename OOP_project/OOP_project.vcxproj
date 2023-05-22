@@ -142,7 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Downloads\sqlite-amalgamation-3410200\sqlite-amalgamation-3410200\sqlite3.c" />
+    <ClCompile Include="..\..\SuperMarketSQLDataBase\sqlite3\sqlite3.c" />
     <ClCompile Include="array_features.cpp" />
     <ClCompile Include="asyncloopsandbox.cpp" />
     <ClCompile Include="cart.cpp" />

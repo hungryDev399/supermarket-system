@@ -15,7 +15,7 @@
 			std::cerr << "Error opening SQLite3 database: " << sqlite3_errmsg(db) << std::endl;
 		}
 		else {
-			std::cout << "Opened SQLite3 database successfully" << std::endl;
+			//std::cout << "Opened SQLite3 database successfully" << std::endl;
 		}
 		const char* create_table = "CREATE TABLE IF NOT EXISTS product(id INTEGER PRIMARY KEY, code INTEGER, \
 								   name TEXT, quantity INTEGER, supplier TEXT, price REAL, is_pizza INTEGER);";
@@ -34,7 +34,7 @@
 		PRODUCT product;
 		rc = sqlite3_exec(db, sql.c_str(), [](void* data, int argc, char** argv, char** colName) -> int {
 			PRODUCT* product = static_cast<PRODUCT*>(data);
-			//product->set_ID(argv[0]);
+			product->set_id(std::stoi(argv[0]));
 			product->set_code(std::stoi(argv[1]));
 			product->set_name(argv[2]);
 			product->set_quantity(std::stoi(argv[3]));
@@ -58,7 +58,7 @@
 		PRODUCT product;
 		rc = sqlite3_exec(db, sql.c_str(), [](void* data, int argc, char** argv, char** colName) -> int {
 			PRODUCT* product = static_cast<PRODUCT*>(data);
-			//product->set_ID(argv[0]);
+			product->set_id(std::stoi(argv[0]));
 			product->set_code(std::stoi(argv[1]));
 			product->set_name(argv[2]);
 			product->set_quantity(std::stoi(argv[3]));
@@ -101,7 +101,9 @@
 
 	void Product::updateProductObject(PRODUCT& p) {
 		std::stringstream ss;
-		ss << "UPDATE product SET code = '" << p.get_code() << "', name = '" << p.get_name() << "', quantity = " << p.get_quantity() << ", supplier = '" << p.get_product_supplier_id() << "', price = " << p.get_price() << ", is_pizza = " << p.get_is_pizza() << " WHERE id = " << p.get_code() << ";";
+		p.print_product();
+
+		ss << "UPDATE product SET code = '" << p.get_code() << "', name = '" << p.get_name() << "', quantity = " << p.get_quantity() << ", supplier = '" << p.get_product_supplier_id() << "', price = " << p.get_price() << ", is_pizza = " << p.get_is_pizza() << " WHERE id = " << p.get_id() << ";";
 		std::string sql = ss.str();
 		rc = sqlite3_exec(db, sql.c_str(), NULL, 0, &errMsg);
 		if (rc != SQLITE_OK) {
@@ -135,7 +137,7 @@
 			double price = sqlite3_column_double(stmt, 5);
 			int is_pizza = sqlite3_column_int(stmt, 6);
 
-			std::cout << "| " << std::setw(3) << id << " | " << std::setw(5) << code << " | " << std::setw(20) << name << " | "
+			std::cout << "| " << std::setw(3) << id << " | " << std::setw(6) << code << " | " << std::setw(20) << name << " | "
 				<< std::setw(9) << quantity << " | " << std::setw(11) << supplier << " | " << std::setw(13) << price
 				<< " | " << std::setw(16) << is_pizza << " |" << std::endl;
 		}

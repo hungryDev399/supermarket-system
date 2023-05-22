@@ -6,6 +6,7 @@
 #include "Cashier_db.h"
 #include "product_tag.h"
 #include "product_db.h"
+#include "cart.h"
 //#include "Product.h"
 
 Cashier cashier_db;
@@ -16,6 +17,7 @@ void getCredentials(credentials& credential) {
     std::cin >> credential.username;
     std::cout << "Enter password: " << std::endl;
     std::cin >> credential.password;
+    
 }
 
 void startProgram() {
@@ -55,7 +57,44 @@ void startCashierPov(CASHIER cashier) {
     std::cin >> option;
     intgerRangeValidation(option, 1, 2);
     if (option == 1) {
+        int order_option;
+        
+        std::vector<std::string> order_options = { "1. Add a product to the order", "2. Remove a product from the order", "3. Finish the order" };
+        for (int i = 0; i < order_options.size(); i++) {
+            std::cout << order_options[i] << std::endl;
+        }
+        std::cout << "Please choose an option" << std::endl;
+        std::cin >> order_option;
+        intgerRangeValidation(order_option, 1, order_options.size());
+        CART cart;
+        if (order_option == 1) { 
+            // adding an item to the order
+            while (true) {
+                product_db.printProductDataBase();
+                int product_id, order_quantity;
+                std::cout << "Enter the product id" << std::endl;
+                std::cin >> product_id;
+                std::cout << "Enter the quantity" << std::endl;
+                std::cin >> order_quantity;
+                intgerRangeValidation(order_quantity, 1, 100000);
+                PRODUCT product = product_db.returnProductAsAnObjectWithID(product_id);
+                //add product to order
+                cart.add_item(product, order_quantity);
+                product_db.updateProductObject(product);
+                std::cout << "Do you want to add another product?\n 1. Yes\n 2. No" << std::endl;
+                int add_another;
+                std::cin >> add_another;
+                intgerRangeValidation(add_another, 1, 2);
+                cart.printProductQuantities();
+                if (add_another == 2) {
+					break;
+				}
 
+            }
+        }
+        if (order_option == 2) {
+            //removing an item from the order
+        }
     }
     
 

@@ -19,7 +19,7 @@ public:
     PRODUCT returnProductAsAnObjectWithCode(int code);
     void saveProductObject(PRODUCT p);
     void deleteProductObject(int id);
-    void updateProductObject(PRODUCT p);
+    void updateProductObject(PRODUCT& p);
     void printProductDataBase();
     bool checkIfCodeExists(int code);
 

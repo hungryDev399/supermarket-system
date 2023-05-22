@@ -23,7 +23,7 @@ void inputThread()
         if (GetAsyncKeyState(VK_CONTROL) & GetAsyncKeyState('T') & 0x8000)
         {
             std::cout <<std::endl<< "Starting GPT..." << std::endl;
-            system("start cmd /k C:\\Users\\moabd\\source\\repos\\gpt\\gpt.exe");
+            //system("start cmd /k C:\\Users\\moabd\\source\\repos\\gpt\\gpt.exe");
             //talkToGPT();
         }
 

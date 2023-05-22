@@ -1,4 +1,4 @@
-#include "pch.h"
+/*#include "pch.h"
 #include "openai.hpp"
 #include <nlohmann/json.hpp>
 #include "gpt_implementation.h"
@@ -40,4 +40,4 @@ void talkToGPT() {
 
         std::cout << message_content << std::endl;
     }
-}
+}*/

@@ -99,7 +99,7 @@
 		}
 	}
 
-	void Product::updateProductObject(PRODUCT p) {
+	void Product::updateProductObject(PRODUCT& p) {
 		std::stringstream ss;
 		ss << "UPDATE product SET code = '" << p.get_code() << "', name = '" << p.get_name() << "', quantity = " << p.get_quantity() << ", supplier = '" << p.get_product_supplier_id() << "', price = " << p.get_price() << ", is_pizza = " << p.get_is_pizza() << " WHERE id = " << p.get_code() << ";";
 		std::string sql = ss.str();

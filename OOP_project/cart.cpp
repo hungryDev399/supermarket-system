@@ -1,66 +1,33 @@
-/*#include "pch.h"
+#include "pch.h"
 #include "cart.h"
-#include <vector>
+#include "product_tag.h"
+#include "product_db.h"
 
-//setters
-void CART::set_product_codes(vector<string> product_codes) {
-	this->product_codes = product_codes;
-}
-void CART::set_quantity(vector<int> quantity) {
-	this->quantity = quantity;
-}
-void CART::set_user_id(string user_id) {
-	this->user_id = user_id;
-}
-void CART::set_price(float price) {
-	this->price = price;
-}
+void CART::add_item(PRODUCT& product, int quantity) {
+	products.push_back(product);
+	// check if the product exists in the map if not add it, if it is update the quantity
+	std::string target = product.get_name();
+	if (products_quantities.find(target) == products_quantities.end())
+		products_quantities[target] = quantity;
+	else
+		products_quantities[target] += quantity;
 
-//getters
-vector<int> CART::get_product_codes() {
-	return product_codes;
-}
-vector<int> CART::get_quantity() {
-	return quantity;
-}
-string CART::get_user_id() {
-	return user_id;
-}
-float CART::get_price() {
-	return price;
+	product.set_quantity(product.get_quantity() - quantity);
+	total_price += (product.get_price() * quantity);
 }
 
-//methods
-void CART::add_item(PRODUCT* product, int quantity) {
-	product_codes.push_back(product->get_code());
-	this->quantity.push_back(quantity);
+void CART::remove_item(PRODUCT& product, int quantity_to_remove) {
+	product.set_quantity(product.get_quantity() + quantity_to_remove);
+	total_price -= (product.get_price() * quantity_to_remove);
+	std::string product_name = product.get_name();
+	products_quantities[product_name] -= quantity_to_remove;
 }
-void CART::remove_item(PRODUCT* product) {
-	for (int i = 0;i < product_codes.size();i++) {
-		if (product_codes[i] == product->get_code()) {
-			product_codes.erase(product_codes.begin() + i);
-			quantity.erase(quantity.begin() + i);
-		}
+
+std::map<std::string, int> CART::getProductQuantities() { return products_quantities; }
+void CART::printProductQuantities() {
+	std::cout << "Current cart" << std::endl;
+	for (auto it = products_quantities.begin(); it != products_quantities.end(); it++) {
+		std::cout << it->first << " " << it->second << std::endl;
 	}
 }
 
-//methods
-void RECEIPT::create_receipt() {
-	//add code here
-}
-
-void RECEIPT::print_receipt() {
-	//add code here
-}
-void RECEIPT::edit_receipt() {
-	//add code here
-}
-void RECEIPT::return_item() {
-	//add code here
-}
-void RECEIPT::replace_item() {
-	//add code here
-}
-void RECEIPT::refund() {
-	//add code here
-}*/

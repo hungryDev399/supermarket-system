@@ -49,57 +49,114 @@ void startProgram() {
 
     }
 }
-
-void startCashierPov(CASHIER cashier) {
+void addItemToCart(CART& cart, Product& product_db);
+void removeItemFromCart(CART& cart, Product& product_db);
+void newOrder(CART& cart);
+void startCashierPov(CASHIER& cashier) {
     int option;
     std::cout << "Welcome to your 9 to 5 job" << std::endl;
     std::cout << "Please choose an option\n 1.new order\n 2.close program" << std::endl;
     std::cin >> option;
     intgerRangeValidation(option, 1, 2);
+    CART cart;
     if (option == 1) {
-        int order_option;
         
-        std::vector<std::string> order_options = { "1. Add a product to the order", "2. Remove a product from the order", "3. Finish the order" };
-        for (int i = 0; i < order_options.size(); i++) {
-            std::cout << order_options[i] << std::endl;
-        }
-        std::cout << "Please choose an option" << std::endl;
-        std::cin >> order_option;
-        intgerRangeValidation(order_option, 1, order_options.size());
-        CART cart;
-        if (order_option == 1) { 
-            // adding an item to the order
-            while (true) {
-                product_db.printProductDataBase();
-                int product_id, order_quantity;
-                std::cout << "Enter the product id" << std::endl;
-                std::cin >> product_id;
-                std::cout << "Enter the quantity" << std::endl;
-                std::cin >> order_quantity;
-                intgerRangeValidation(order_quantity, 1, 100000);
-                PRODUCT product = product_db.returnProductAsAnObjectWithID(product_id);
-                //add product to order
-                cart.add_item(product, order_quantity);
-                //std::cout << product.get_quantity() << std::endl;
-                product_db.updateProductObject(product);
-                std::cout << "Do you want to add another product?\n 1. Yes\n 2. No" << std::endl;
-                int add_another;
-                std::cin >> add_another;
-                intgerRangeValidation(add_another, 1, 2);
-                cart.printProductQuantities();
-                if (add_another == 2) {
-					break;
-				}
-
-            }
-        }
-        if (order_option == 2) {
-            //removing an item from the order
-        }
+        newOrder(cart);
+        
     }
     
 
 }
+
+void newOrder(CART& cart) {
+    int order_option;
+
+    std::vector<std::string> order_options = { "1. Add a product to the order", "2. Remove a product from the order", "3. Finish the order" };
+    for (int i = 0; i < order_options.size(); i++) {
+        std::cout << order_options[i] << std::endl;
+    }
+    std::cout << "Please choose an option" << std::endl;
+    std::cin >> order_option;
+    intgerRangeValidation(order_option, 1, order_options.size());
+    
+    if (order_option == 1) {
+        // adding an item to the order
+        addItemToCart(cart, product_db);
+
+    }// validations required
+    if (order_option == 2) {
+		// removing an item from the order
+		removeItemFromCart(cart, product_db);
+	}
+    if (order_option == 3) {
+        cart.checkout(product_db);
+    }
+
+    std::cout << "Chosse an option:\n 1. continue\n 2. exit" << std::endl;
+    int end_option;
+    std::cin >> end_option;
+    intgerRangeValidation(end_option, 1, 3);
+    if (end_option == 1) {
+		newOrder(cart);
+	}
+
+
+}
+void addItemToCart(CART& cart, Product& product_db) {
+    while (true) {
+        product_db.printProductDataBase();
+        int product_id, order_quantity;
+        std::cout << "Enter the product id" << std::endl;
+        std::cin >> product_id;
+        std::cout << "Enter the quantity" << std::endl;
+        std::cin >> order_quantity;
+        intgerRangeValidation(order_quantity, 1, 100000);
+        PRODUCT product = product_db.returnProductAsAnObjectWithID(product_id);
+        //add product to order
+        cart.add_item(product, order_quantity);
+        //std::cout << product.get_quantity() << std::endl;
+        //product_db.updateProductObject(product);
+        std::cout << "Do you want to add another product?\n 1. Yes\n 2. No" << std::endl;
+        int add_another;
+        std::cin >> add_another;
+        intgerRangeValidation(add_another, 1, 2);
+        cart.printProductQuantities();
+        if (add_another == 2) {
+            return;
+        }
+    }
+    newOrder(cart);
+}
+void removeItemFromCart(CART& cart, Product& product_db) {
+    while (true) {
+        std::cout << std::endl;
+		cart.printProductQuantities();
+        std::cout << std::endl;
+
+		int product_id, order_quantity;
+		std::cout << "Enter the product id" << std::endl;
+		std::cin >> product_id;
+		std::cout << "Enter the quantity" << std::endl;
+		std::cin >> order_quantity;
+		intgerRangeValidation(order_quantity, 1, 100000);
+		PRODUCT product = product_db.returnProductAsAnObjectWithID(product_id);
+		//add product to order
+		cart.remove_item(product, order_quantity);
+		//product_db.updateProductObject(product);
+		std::cout << "Do you want to remove another product?\n 1. Yes\n 2. No" << std::endl;
+		int add_another;
+		std::cin >> add_another;
+		intgerRangeValidation(add_another, 1, 2);
+		cart.printProductQuantities();
+        if (add_another == 2) {
+            return;
+		}
+	}
+    newOrder(cart);
+}
+
+
+
 
 void startBigBossPov() {
     BIGBOSS* big_boss_ptr = new BIGBOSS();
@@ -169,7 +226,6 @@ void showBigBossOptions(BIGBOSS* big_boss_ptr) {
     
     if (option == 1) {
         CASHIER cashier;
-		CASHIER cashier_2("Mahmoud", 2500, 60, "01026879203");
 		big_boss_ptr->addCashier(cashier);
         std::cout << cashier.get_phone_number()<<std::endl;
 		//log int the cashier in the database

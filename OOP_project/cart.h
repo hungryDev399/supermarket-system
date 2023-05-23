@@ -12,5 +12,6 @@ public:
 	void remove_item(PRODUCT& product, int quantity);
 	std::map<std::string, int> getProductQuantities();
 	void printProductQuantities();
+	void checkout(Product& product_db);
 
 };

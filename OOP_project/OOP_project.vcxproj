@@ -142,7 +142,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\SuperMarketSQLDataBase\sqlite3\sqlite3.c" />
     <ClCompile Include="array_features.cpp" />
     <ClCompile Include="asyncloopsandbox.cpp" />
     <ClCompile Include="BigBoss_db.cpp" />
@@ -152,6 +151,7 @@
     <ClCompile Include="gpt_implementation.cpp" />
     <ClCompile Include="product_db.cpp" />
     <ClCompile Include="product_tag.cpp" />
+    <ClCompile Include="sqlite3.c" />
     <ClCompile Include="start_program.cpp" />
     <ClCompile Include="data_struct.cpp" />
     <ClCompile Include="employee.cpp" />

@@ -4,7 +4,7 @@
 #include <random>
 #include <limits>
 #include "useful_tools.h"
-//#include "product_db.h"
+////#include "product_db.h"
 //#include "product_tag.h"
 //#include "Product.h"
 //#include "product_tag.h"
@@ -83,6 +83,11 @@ public:
 	int getBonus();
     void addCashier(CASHIER& cashier);
     void construct_manager(const std::string& name, const int salary, const int age, const std::string& phone_number);
+    void edit_product(PRODUCT prod);
+    void view_product();
+    void add_supplier();
+   // void edit_supplier();
+    void view_supplier();
     MANAGER();
     MANAGER(const std::string& name, const int salary, const int age, const std::string& phone_number);
     

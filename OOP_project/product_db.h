@@ -22,6 +22,7 @@ public:
     void updateProductObject(PRODUCT& p);
     void printProductDataBase();
     bool checkIfCodeExists(int code);
+    void printProductsByName(std::string name);
 
 private:
     sqlite3* db;

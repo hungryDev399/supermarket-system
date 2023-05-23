@@ -163,6 +163,38 @@
 		return codeExists;
 	}
 
+	void Product::printProductsByName(std::string name) {
+		std::cout << "----------------------------------------------------------------------------------------------------\n";
+		std::cout << "|\t\t\t\t      Product DataBase \t\t\t\t\t           |\n";
+		std::cout << "|--------------------------------------------------------------------------------------------------|\n";
+		std::cout << "| Id  | Code   | Name \t\t      | Quantity  | Supplier\t| Price      \t| Is Pizza?   \t   |" << std::endl;
+		std::cout << "|--------------------------------------------------------------------------------------------------|\n";
 
+		std::stringstream ss;
+		ss << "SELECT id, code, name, quantity, supplier, price, is_pizza FROM product WHERE name = '" << name << "';";
+		std::string query = ss.str();
 
+		sqlite3_stmt* stmt;
+		rc = sqlite3_prepare_v2(db, query.c_str(), -1, &stmt, NULL);
+		if (rc != SQLITE_OK) {
+			std::cerr << "Error executing SQL query: " << sqlite3_errmsg(db) << std::endl;
+			return;
+		}
 
+		while (sqlite3_step(stmt) == SQLITE_ROW) {
+			int id = sqlite3_column_int(stmt, 0);
+			int code = sqlite3_column_int(stmt, 1);
+			const unsigned char* product_name = sqlite3_column_text(stmt, 2);
+			int quantity = sqlite3_column_int(stmt, 3);
+			const unsigned char* supplier = sqlite3_column_text(stmt, 4);
+			double price = sqlite3_column_double(stmt, 5);
+			int is_pizza = sqlite3_column_int(stmt, 6);
+
+			std::cout << "| " << std::setw(3) << id << " | " << std::setw(6) << code << " | " << std::setw(20) << product_name << " | "
+				<< std::setw(9) << quantity << " | " << std::setw(11) << supplier << " | " << std::setw(13) << price
+				<< " | " << std::setw(16) << is_pizza << " |" << std::endl;
+		}
+
+		sqlite3_finalize(stmt);
+		std::cout << "----------------------------------------------------------------------------------------------------\n";
+	}

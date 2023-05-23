@@ -167,6 +167,9 @@
     <ClInclude Include="BigBoss_db.h">
       <Filter>Header Files\database</Filter>
     </ClInclude>
+    <ClInclude Include="Manager_db.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\..\vscode projects\C C++\OOP_Project\.vscode\c_cpp_properties.json">

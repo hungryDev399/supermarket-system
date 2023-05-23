@@ -182,6 +182,7 @@
     <ClInclude Include="employee.h" />
     <ClInclude Include="gpt_implementation.h" />
     <ClInclude Include="json.hpp" />
+    <ClInclude Include="Manager_db.h" />
     <ClInclude Include="openai.hpp" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Product.h" />

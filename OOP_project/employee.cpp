@@ -407,4 +407,10 @@ void BIGBOSS::addProduct(PRODUCT& product) {
 	product.construct_product(name, quantity, price, product_supplier_id, is_pizza);
 }
 
+void BIGBOSS::setID(int id) {
+    this->id = id;
+}
 
+int BIGBOSS::getID() {
+	return this->id;
+}

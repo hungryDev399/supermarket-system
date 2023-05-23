@@ -145,6 +145,7 @@
     <ClCompile Include="..\..\SuperMarketSQLDataBase\sqlite3\sqlite3.c" />
     <ClCompile Include="array_features.cpp" />
     <ClCompile Include="asyncloopsandbox.cpp" />
+    <ClCompile Include="BigBoss_db.cpp" />
     <ClCompile Include="cart.cpp" />
     <ClCompile Include="Cashier_db.h" />
     <ClCompile Include="Chashier_db.cpp" />
@@ -173,6 +174,7 @@
     <ClCompile Include="useful_structs.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BigBoss_db.h" />
     <ClInclude Include="cart.h" />
     <ClInclude Include="cashier_interface.h" />
     <ClInclude Include="Chasier.h" />

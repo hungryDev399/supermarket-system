@@ -111,6 +111,9 @@
     <ClCompile Include="..\..\SuperMarketSQLDataBase\sqlite3\sqlite3.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BigBoss_db.cpp">
+      <Filter>Source Files\database_cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="employee.h">
@@ -159,6 +162,9 @@
       <Filter>Header Files\tag_headers</Filter>
     </ClInclude>
     <ClInclude Include="product_db.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="BigBoss_db.h">
       <Filter>Header Files\database</Filter>
     </ClInclude>
   </ItemGroup>

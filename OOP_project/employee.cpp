@@ -6,6 +6,9 @@
 #include "Cashier_db.h"
 #include "product_db.h"
 #include "product_tag.h"
+#include "supplier_tag.h"
+#include "Supplier.h"
+#include "Stock.h"
 class Cashier;
 std::string generateID() {
     int max_int = std::numeric_limits<int>::max();
@@ -240,8 +243,192 @@ void MANAGER::addCashier(CASHIER& cashier) {
 
 }
 
+void MANAGER::edit_product(PRODUCT prod){
+    //which detail to edit
+    int choice2;
+    Product p1;
+    cout << "1. Edit product name" << endl;
+    cout << "2. Edit product quantity" << endl;
+    cout << "3. Edit product price" << endl;
+    cout << "4. Edit product supplier" << endl;
+    cin >> choice2;
+    switch (choice2) {
+    case(1): {
+        string name;
+        cout << "Enter new name: ";
+        cin >> name;
+        prod.set_name(name);
+        p1.updateProductObject(prod);
+        break;
+    }
+    case(2): {
+
+        //check add or remove quantity
+        int choice3;
+        cout << "1. Add quantity" << endl;
+        cout << "2. Remove quantity" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice3;
+        switch (choice3) {
+        case(1): {
+            int quantity;
+            cout << "Enter quantity to add: ";
+            cin >> quantity;
+            Stock s;
+            s.addStock(prod, quantity);
+            break;
+        }
+
+        case(2): {
+            int quantity;
+            cout << "Enter quantity to remove: ";
+            cin >> quantity;
+            Stock s;
+            s.removeStock(prod, quantity);
+            break;
+        }
+        }
+        p1.updateProductObject(prod);
+        cout << "=======================================" << endl;
+
+        break;
+    }
+    case(3): {
+        int price;
+        cout << "Enter new price: ";
+        cin >> price;
+        prod.set_price(price);
+        p1.updateProductObject(prod);
+        break;
+    }
+    case(4): {
+        int supplier_id;
+        cout << "Enter new supplier id: ";
+        cin >> supplier_id;
+        Stock s;
+        s.changeSupplier(prod, supplier_id);
+        break;
+    }
+    default: {
+		cout << "Invalid choice" << endl;
+		break;
+    }
 
 
+    }
+}
+
+void startProgram();
+void MANAGER::view_product(){
+    int product_id;
+    cout << "Enter product code: ";
+    cin >> product_id;
+    cout << "======================================"<<endl;
+    Stock s;
+    Product p;
+    PRODUCT prod = p.returnProductAsAnObjectWithCode(product_id);
+    int choice1;
+    prod.print_product();
+    s.CheckLowStock(prod);
+    cout << "======================================" << endl;
+    cout << endl << "1. Edit product details" << endl;
+    cout << "2. view product supplier" << endl;
+    cout << "any other number to return to options" << endl;
+    cout << "Enter your choice: ";
+    cin >> choice1;
+    switch (choice1) {
+    case(1): {
+			edit_product(prod);
+			break;
+		}
+    case(2): {
+        Supplier s;
+        s.returnSupplierAsAnObjectWithID(prod.get_product_supplier_id()).print_supplier();
+           }
+    default: {
+        return;
+           }
+    }
+    startProgram();
+}
+
+void MANAGER::add_supplier() {
+    int supplier_id;
+    string name;
+    string address;
+    string phone_number;
+    string email;
+    cout << "Enter supplier id: ";
+    cin >> supplier_id;
+    cout << "Enter supplier name: ";
+    cin >> name;
+    cout << "Enter supplier address: ";
+    cin >> address;
+    cout << "Enter supplier phone number: ";
+    cin >> phone_number;
+    cout << "Enter supplier email: ";
+    cin >> email;
+    supplier new_supplier(supplier_id, name, address, phone_number, email);
+    Supplier s;
+    s.saveSupplierObject(new_supplier);
+}
+/*
+void MANAGER::edit_supplier(supplier sup){
+    int choice; 
+    Supplier s1;
+
+    //let the user choose which field to edit
+    cout << "1. Edit supplier name" << endl;
+    cout << "2. Edit supplier address" << endl;
+    cout << "3. Edit supplier phone number" << endl;
+    cout << "4. Edit supplier email" << endl;
+    cout << "Enter your choice: ";
+    cin >> choice;
+    switch (choice) {  
+    case(1): {
+        string new_name;
+        cout << "Enter new name: ";
+        cin >> new_name;
+        sup.set_name(new_name);
+        s1.updateProductObject(sub);
+        break;
+    }
+    case(2): {
+        string address;
+        cout << "Enter new address: ";
+        cin >> address;
+        sup.set_address(address);
+        s1.UpdateSupplierObject(sup);
+        break;
+    }
+    case(3): {
+        string phone_number;
+        cout << "Enter new phone number: ";
+        cin >> phone_number;
+        sup.set_phone_number(phone_number);
+        s1.UpdateSupplierObject(sup);
+        break;
+    }
+    case(4): {
+        string email;
+        cout << "Enter new email: ";
+        cin >> email;
+        sup.set_email(email);
+        s1.UpdateSupplierObject(sup);
+        break;
+    }
+
+    }
+}
+*/
+void MANAGER::view_supplier(){
+    int supplier_id;
+    cout << "Enter supplier id: ";
+    cin >> supplier_id;
+    Supplier s;
+    supplier sup = s.returnSupplierAsAnObjectWithID(supplier_id);
+    sup.print_supplier();
+}
 
 void MANAGER::appenedMessage(std::string message) {
     messages_recieved.push_back(message);

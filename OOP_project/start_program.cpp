@@ -25,7 +25,7 @@ void startProgram() {
      product_db.deleteProductObject(4);
     
     int option;
-    std::cout << "Choose an option:" << '\n' << "\t1. Login as a Cashier" << "\n\t2. Login as a Big Boss\n" << "Please Enter your Choice: ";
+    std::cout << "Choose an option:" << '\n' << "\t1. Login as a Cashier" << "\n\t2. Login as a Big BossS" <<"\n\t3. Login as a Manager\n" <<"Please Enter your Choice: ";
     std::cin >> option;
     int option_count = 2;
     while (option<0) {
@@ -48,8 +48,10 @@ void startProgram() {
         startBigBossPov();
 
     }
+    if (option == 3) {
+        showManagerOptions();
+    }
 }
-
 void startCashierPov(CASHIER cashier) {
     int option;
     std::cout << "Welcome to your 9 to 5 job" << std::endl;
@@ -204,4 +206,58 @@ void showBigBossOptions(BIGBOSS* big_boss_ptr) {
 	
 }
 
+//utilize manager class from here 
+/*
+class MANAGER : public EMPLOYEE {
+    int bonus;
+    std::vector<std::string> messages_recieved;
+public:
+    void set_Bonus(int bonus);
+    void appenedMessage(std::string message);
+    void showMessages();
+    int getBonus();
+    void addCashier(CASHIER& cashier);
+    void construct_manager(const std::string& name, const int salary, const int age, const std::string& phone_number);
+    void edit_product(PRODUCT prod);
+    void view_product();
+    void add_supplier();
+    // void edit_supplier();
+    void view_supplier();
+    MANAGER();
+    MANAGER(const std::string& name, const int salary, const int age, const std::string& phone_number);
 
+};*/
+//utilize manager class from the previous comments
+
+void showManagerOptions() {
+    MANAGER manager;
+    std::cout<< "Welcome to the manager menu" << std::endl;
+    std::vector<std::string> options = { "1. View and edit a product", "2. View supplier","3. Add new supplier" };
+    for (std::string o : options) {
+		std::cout << o << std::endl;
+	}
+
+    int option;
+    std::cin >> option;
+    bool succeeded = intgerRangeValidation(option, 1, options.size(), 6);
+
+    //giving the user the option to go back
+    while (!succeeded) {
+        std::cout<<"You are out of trials"<<std::endl;
+        std::cout << "Press on any number to go back";
+        int back;
+        std::cin >> back;
+        startProgram();
+    }
+
+    if (option == 1) {
+        manager.view_product();
+    }
+    if (option == 2) {
+		manager.view_supplier();
+	}
+    if (option == 3) {
+		manager.add_supplier();
+	}
+
+}

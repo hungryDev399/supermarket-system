@@ -15,4 +15,4 @@ void newCashier();
 void showOptions();*/
 void showBigBossOptions(BIGBOSS* big_boss_ptr);
 void startCashierPov(CASHIER cashier);
-
+void showManagerOptions();

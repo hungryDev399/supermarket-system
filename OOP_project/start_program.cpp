@@ -9,6 +9,7 @@
 #include "BigBoss_db.h"
 #include "cart.h"
 #include "Loyality.h"
+#include "user_db.h"
 //#include "Product.h"
 
 Cashier cashier_db;
@@ -73,7 +74,7 @@ void startProgram() {
         showManagerOptions();
     }
 }
-
+int useLoyaltyPoints(int total_price);
 void addItemToCart(CART& cart, Product& product_db);
 void removeItemFromCart(CART& cart, Product& product_db);
 void newOrder(CART& cart);
@@ -98,7 +99,7 @@ void newOrder(CART& cart) {
     int order_option;
     system("CLS");
     std::cout << "Welcome to oreder mangment section..." << std::endl;
-    std::vector<std::string> order_options = { "\t[1] Add a product to the order", "\t[2] Remove a product from the order", "\t[3] Finish the order" };
+    std::vector<std::string> order_options = { "\t[1] Add a product to the order", "\t[2] Remove a product from the order","\t[3] Use loyalty system" ,"\t[4] Finish the order" };
     for (int i = 0; i < order_options.size(); i++) {
         std::cout << order_options[i] << std::endl;
     }
@@ -116,7 +117,10 @@ void newOrder(CART& cart) {
 		removeItemFromCart(cart, product_db);
 	}
     if (order_option == 3) {
-		// using loyalty points
+		//add total price instead of this random string
+        int total_price = cart.get_total_price();
+        int new_price = useLoyaltyPoints(total_price);
+        cart.set_total_price(new_price);
 	}
     if (order_option == 4) {
         cart.checkout(product_db);
@@ -138,48 +142,65 @@ int useLoyaltyPoints(int total_price ) {
     std::string phone_number;
     std::cout << "Enter customer's phone number: " << std::endl;
     std::cin >> phone_number;
-    std::string prefix = phone_number.substr(0, 3);
-    while (phone_number.length() != 11 || prefix != "011" || prefix != "012" || prefix != "015") {
+    while (phone_number.length() != 11 ) {
 		std::cout << "Invalid phone number, please try again: " << std::endl;
 		std::cin >> phone_number;
 	}
     
-    //getobjectfromdb
-    //getloyaltypoints
-    LoyaltySystem customer;
-    std::cout<< "Customer has " <<customer.getLoyaltyPoints()<< " points"<<endl;
-    std::cout << "Points are translated to " << customer.pointsInMoney() << " pounds" << std::endl;
-    std::cout << "Do you want to use points?\n\t 1. Yes\n\t 2. No" << std::endl;
-    int option;
-    std::cin >> option;
-    intgerRangeValidation(option, 1, 2);
-    if (option == 1) {
-        int points;
-        std::cout << "Enter the number of points you want to use: " << std::endl;
-        std::cin >> points;
-        while (points > customer.getLoyaltyPoints()) {
-            std::cout << "You don't have enough points please reenter the number of points you want to use: " << std::endl;
-            std::cin >> points;
-        } 
-        //validation of points and converting to money
-        std::cout <<"Are you sure you want to use " << points << " points?( 1.Yes or 2. no)" << std::endl;
-        int answer;
-        std::cin >> answer;
-        while (answer != 1|| answer != 2 ){
-			std::cout << "Invalid answer, please try again: " << std::endl;
-			std::cin >> answer;
-		}
-        if (answer == 1) {
-            customer.deductLoyaltyPoints(points);
-            std::cout << "You have " << customer.getLoyaltyPoints() << " points left" << std::endl;
-            total_price -= customer.convertPointsToMoney(points);
-        }
+    User user;
+    bool user_exists =  user.checkIfUserExists(phone_number);
+    if (!user_exists) {
+        LoyaltySystem customer(phone_number);
+        cout<< "User added as a Loyal Customer"<<endl;
+        customer.addPointsByPurchase(total_price);
+        user.saveUserObject(customer);
+        std::cout << "Customer has " << customer.getLoyaltyPoints() << " points now" << endl;
+    }
+    else {
+        LoyaltySystem customer = user.returnUserAsAnObject(phone_number);
 
-        return total_price;
+        customer.addPointsByPurchase(total_price);
+        user.updatePoints(customer);
+        std::cout << "Customer has " << customer.getLoyaltyPoints() << " points" << endl;
+        std::cout << "Points are translated to " << customer.pointsInMoney() << " pounds" << std::endl;
+        std::cout << "choose what to do?\n\t 1. Use points\n\t 2. Add points from current purchase" << std::endl;
+        int option;
+        std::cin >> option;
+        intgerRangeValidation(option, 1, 2);
+        if (option == 1) {
+            int points;
+            std::cout << "Enter the number of points you want to use: " << std::endl;
+            std::cin >> points;
+            while (points > customer.getLoyaltyPoints()) {
+                std::cout << "You don't have enough points please reenter the number of points you want to use: " << std::endl;
+                std::cin >> points;
+            }
+            //validation of points and converting to money
+            std::cout << "Are you sure you want to use " << points << " points?( 1.Yes or 2. no)" << std::endl;
+            int answer;
+            std::cin >> answer;
+            while (answer != 1 || answer != 2) {
+                std::cout << "Invalid answer, please try again: " << std::endl;
+                std::cin >> answer;
+            }
+            if (answer == 1) {
+                customer.deductLoyaltyPoints(points);
+                std::cout << "You have " << customer.getLoyaltyPoints() << " points left" << std::endl;
+                total_price -= customer.convertPointsToMoney(points);
+            }
+            else {
+				std::cout << "You have " << customer.getLoyaltyPoints() << " points left" << std::endl;
+			}
+            user.updatePoints(customer);
+            return total_price;
         }
-	else {
-		return total_price;
-}
+        else {
+            customer.addPointsByPurchase(total_price);
+            user.updatePoints(customer);
+            std::cout << "You have " << customer.getLoyaltyPoints() << " points now" << std::endl;
+            return total_price;
+        }
+    }
 }
     
     

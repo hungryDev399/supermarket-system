@@ -6,7 +6,7 @@ using namespace std;
 
 LoyaltySystem::LoyaltySystem() {};
 
-LoyaltySystem::LoyaltySystem(const std::string& phoneNumber) {
+LoyaltySystem::LoyaltySystem(std::string phoneNumber) {
     this->phoneNumber = phoneNumber;
     loyaltyPoints = 0;
 }

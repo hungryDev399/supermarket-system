@@ -41,3 +41,8 @@ void CART::checkout(Product& product_db) {
 		product_db.updateProductObject(product);
 	}
 }
+int CART::get_total_price() { return total_price; }
+
+void CART::set_total_price(int price) {
+	total_price = price;
+}

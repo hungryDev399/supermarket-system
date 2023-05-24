@@ -8,6 +8,8 @@ class CART :PRODUCT {
 	std::string user_id, cashier_id;
 	std::map<std::string, int> products_quantities;
 public:
+	void set_total_price(int price);
+	int get_total_price();
 	void add_item(PRODUCT& product,int quantity);
 	void remove_item(PRODUCT& product, int quantity);
 	std::map<std::string, int> getProductQuantities();

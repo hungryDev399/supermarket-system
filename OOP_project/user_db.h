@@ -11,8 +11,10 @@
 class User {
 public:
     User();
+    void saveUserObject(LoyaltySystem c);
     LoyaltySystem returnUserAsAnObject(std::string phone_number);
     void updatePoints(LoyaltySystem c);
+    bool checkIfUserExists(std:: string phone_number);
 
     
 

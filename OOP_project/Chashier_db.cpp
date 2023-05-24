@@ -156,3 +156,22 @@ Cashier::Cashier() {
         }
         return cashier;
     }
+
+    bool Cashier::checkIfCashierExists(int id) {
+            std::stringstream ss;
+            ss << "SELECT * FROM users WHERE id = " << id << ";";
+            std::string sql = ss.str();
+            bool codeExists = false;
+            rc = sqlite3_exec(db, sql.c_str(), [](void* data, int argc, char** argv, char** colName) -> int {
+                bool* codeExistsPtr = static_cast<bool*>(data);
+                *codeExistsPtr = true;
+                return 0;
+                }, &codeExists, &errMsg);
+            if (rc != SQLITE_OK) {
+                std::cerr << "Error selecting data: " << errMsg << std::endl;
+                sqlite3_free(errMsg);
+                sqlite3_close(db);
+            }
+            return codeExists;
+        }
+    

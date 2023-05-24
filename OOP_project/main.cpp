@@ -6,7 +6,7 @@
 #include <cstdlib>
 //#include <sys/resource.h>
 
-#include "Product_db.h"
+#include "cashier_db.h"
 
 std::string admin_pass = "admin";
 std::string admin_username = "admin";
@@ -35,6 +35,7 @@ void inputThread()
 }
 
 int main() {
+
     std::thread macro_detection_thread(inputThread);
     // start of program
 
@@ -47,10 +48,8 @@ int main() {
     std::cout << "Program end, press enter to close the program"<<std::endl;
     std::cin.get();
     std::cin.get();
-    
-    
 
-
+    
 
     return 0;
 }

@@ -1,6 +1,4 @@
-#ifndef LOYALTY_SYSTEM_H
-#define LOYALTY_SYSTEM_H
-
+#pragma once
 #include <string>
 
 class LoyaltySystem {
@@ -21,4 +19,3 @@ private:
     int loyaltyPoints;
 };
 
-#endif  // LOYALTY_SYSTEM_H

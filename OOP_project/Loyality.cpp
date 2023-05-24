@@ -1,8 +1,10 @@
-#include "pch.h"
+//#include "pch.h"
 #include "loyality.h"
 #include <iostream>
 
 using namespace std;
+
+LoyaltySystem::LoyaltySystem() {};
 
 LoyaltySystem::LoyaltySystem(const std::string& phoneNumber) {
     this->phoneNumber = phoneNumber;

@@ -75,9 +75,6 @@
     <ClCompile Include="myVector.cpp">
       <Filter>Source Files\learning</Filter>
     </ClCompile>
-    <ClCompile Include="SupplierContact.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="useful_structs.h">
       <Filter>Header Files</Filter>
     </ClCompile>
@@ -114,6 +111,15 @@
     <ClCompile Include="BigBoss_db.cpp">
       <Filter>Source Files\database_cpp</Filter>
     </ClCompile>
+    <ClCompile Include="Stock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Loyality.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="user_db.cpp">
+      <Filter>Source Files\database_cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="employee.h">
@@ -127,9 +133,6 @@
     </ClInclude>
     <ClInclude Include="useful_tools.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SupplierContact.h">
-      <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="cart.h">
       <Filter>Header Files</Filter>
@@ -168,6 +171,15 @@
       <Filter>Header Files\database</Filter>
     </ClInclude>
     <ClInclude Include="Manager_db.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="Stock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Loyality.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="user_db.h">
       <Filter>Header Files\database</Filter>
     </ClInclude>
   </ItemGroup>

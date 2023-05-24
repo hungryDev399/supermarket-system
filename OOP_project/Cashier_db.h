@@ -22,6 +22,7 @@ public:
     void updateCashierObject(CASHIER c);
     void deleteCashierObject(int id);
     CASHIER getCashierObjectByPhoneNumber(std::string phoneNumber);
+    bool checkIfCashierExists(int id);
 
 private:
     sqlite3* db;

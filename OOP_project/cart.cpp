@@ -7,7 +7,7 @@ void CART::add_item(PRODUCT& product, int quantity) {
 	products.push_back(product);
 	// check if the product exists in the map if not add it, if it is update the quantity
 	std::string target = product.get_name();
-	std::cout<<target<<" added to cart"<<std::endl; // "target added to cart
+	std::cout<< "[-] "<< quantity <<" < " << target << " > added to cart" << std::endl; // "target added to cart
 	if (products_quantities.find(target) == products_quantities.end())
 		products_quantities[target] = quantity;
 	else

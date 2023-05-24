@@ -1,13 +1,12 @@
-#include "pch.h"
+//#include "pch.h"
 #include "loyality.h"
 #include <iostream>
 
 using namespace std;
 
-LoyaltySystem::LoyaltySystem(){
-}
+LoyaltySystem::LoyaltySystem() {};
 
-LoyaltySystem::LoyaltySystem( std::string phoneNumber) {
+LoyaltySystem::LoyaltySystem(const std::string& phoneNumber) {
     this->phoneNumber = phoneNumber;
     loyaltyPoints = 0;
 }

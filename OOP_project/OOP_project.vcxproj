@@ -173,6 +173,7 @@
     <ClCompile Include="testingcpp.cpp" />
     <ClCompile Include="useful tools.cpp" />
     <ClCompile Include="useful_structs.h" />
+    <ClCompile Include="user_db.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BigBoss_db.h" />
@@ -183,6 +184,7 @@
     <ClInclude Include="employee.h" />
     <ClInclude Include="gpt_implementation.h" />
     <ClInclude Include="json.hpp" />
+    <ClInclude Include="Loyality.h" />
     <ClInclude Include="Manager_db.h" />
     <ClInclude Include="Loyality.h" />
     <ClInclude Include="openai.hpp" />
@@ -194,6 +196,7 @@
     <ClInclude Include="Supplier.h" />
     <ClInclude Include="supplier_tag.h" />
     <ClInclude Include="useful_tools.h" />
+    <ClInclude Include="user_db.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\..\vscode projects\C C++\OOP_Project\.vscode\c_cpp_properties.json" />

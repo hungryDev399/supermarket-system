@@ -26,9 +26,9 @@ void startProgram() {
      product_db.deleteProductObject(4);
     
     int option;
-    std::cout << "Choose an option:" << '\n' << "\t1. Login as a Cashier" << "\n\t2. Login as a Big Boss\n" << "Please Enter your Choice: ";
+    std::cout << "Choose an option:" << '\n' << "\t1. Login as a Cashier" << "\n\t2. Login as a Big Boss\n" << "\t3. Log in as a Manager\n"<<"Please Enter your Choice: ";
     std::cin >> option;
-    int option_count = 2;
+    int option_count = 3;
     while (option<0) {
         std::cout << "Invalid option, please try again"<<std::endl;
         std::cin >> option;
@@ -333,29 +333,6 @@ void showBigBossOptions(BIGBOSS* big_boss_ptr) {
 
 	
 }
-
-//utilize manager class from here 
-/*
-class MANAGER : public EMPLOYEE {
-    int bonus;
-    std::vector<std::string> messages_recieved;
-public:
-    void set_Bonus(int bonus);
-    void appenedMessage(std::string message);
-    void showMessages();
-    int getBonus();
-    void addCashier(CASHIER& cashier);
-    void construct_manager(const std::string& name, const int salary, const int age, const std::string& phone_number);
-    void edit_product(PRODUCT prod);
-    void view_product();
-    void add_supplier();
-    // void edit_supplier();
-    void view_supplier();
-    MANAGER();
-    MANAGER(const std::string& name, const int salary, const int age, const std::string& phone_number);
-
-};*/
-//utilize manager class from the previous comments
 
 void showManagerOptions() {
     MANAGER manager;

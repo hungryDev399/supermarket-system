@@ -95,11 +95,14 @@ public:
 
 class BIGBOSS : public EMPLOYEE{
     std::string username, password;
+    int id;
 
 public:
     void addManager(MANAGER& manager);
     BIGBOSS();
     void addCashier(CASHIER& cashier);
+    void setID(int id);
+    int getID();
     void resetUsername();
     void resetPassword();
     void setUsername(std::string username);

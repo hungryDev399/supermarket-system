@@ -26,7 +26,7 @@ void startProgram() {
      product_db.deleteProductObject(4);
     
     int option;
-    std::cout << "Choose an option:" << '\n' << "\t1. Login as a Cashier" << "\n\t2. Login as a Big BossS" <<"\n\t3. Login as a Manager\n" <<"Please Enter your Choice: ";
+    std::cout << "Choose an option:" << '\n' << "\t1. Login as a Cashier" << "\n\t2. Login as a Big Boss\n" << "Please Enter your Choice: ";
     std::cin >> option;
     int option_count = 2;
     while (option<0) {
@@ -35,14 +35,25 @@ void startProgram() {
     }
 
     if (option == 1) {
+        system("CLS");
+        std::cout << "Hi their, please enter market staff login credentials" << std::endl;
         int id;
-        cashier_db.printCashierDataBase();
-        std::cout << "Enter the id" << std::endl;
+        std::string password;
+        //cashier_db.printCashierDataBase();
+        std::cout << "Enter your ID: " ;
         std::cin >> id;
+        std::cout << "Enter your Password: ";
+        std::cin >> password;
         CASHIER cashier = cashier_db.returnCashierAsAnObject(id);
+        if (password == cashier.get_password()) {
+            std::cout << "Welcome " << cashier.get_name() << std::endl;
+            startCashierPov(cashier);
+        }
+        else {
+            std::cout << "Wrong password" << std::endl;
+        }
         // currently no validation
-        std::cout << "Welcome " << cashier.get_name() << std::endl;
-        startCashierPov(cashier);
+        
     }
 
     if (option == 2) {
@@ -59,8 +70,9 @@ void removeItemFromCart(CART& cart, Product& product_db);
 void newOrder(CART& cart);
 void startCashierPov(CASHIER& cashier) {
     int option;
-    std::cout << "Welcome to your 9 to 5 job" << std::endl;
-    std::cout << "Please choose an option\n 1.new order\n 2.close program" << std::endl;
+    system("CLS");
+    std::cout << "Welcome <"<< cashier.get_name() << "> to Cashier panel :-)" << std::endl;
+    std::cout << "Please choose what do you want to do....\n\t[1] new order\n\t[2] close program" << "\nPlease choose (1) or (2)    ";
     std::cin >> option;
     intgerRangeValidation(option, 1, 2);
     CART cart;
@@ -75,12 +87,13 @@ void startCashierPov(CASHIER& cashier) {
 
 void newOrder(CART& cart) {
     int order_option;
-
-    std::vector<std::string> order_options = { "1. Add a product to the order", "2. Remove a product from the order", "3. Use Loyalty points" , "3. Finish the order" };
+    system("CLS");
+    std::cout << "Welcome to oreder mangment section..." << std::endl;
+    std::vector<std::string> order_options = { "\t[1] Add a product to the order", "\t[2] Remove a product from the order", "\t[3] Finish the order" };
     for (int i = 0; i < order_options.size(); i++) {
         std::cout << order_options[i] << std::endl;
     }
-    std::cout << "Please choose an option" << std::endl;
+    std::cout << "Please choose an option:  ";
     std::cin >> order_option;
     intgerRangeValidation(order_option, 1, order_options.size());
     

@@ -323,6 +323,12 @@ void MANAGER::view_product(){
     int product_id;
     cout << "Enter product code: ";
     cin >> product_id;
+    Product p1;
+    bool prod_exists= p1.checkIfCodeExists(product_id);
+    if (!prod_exists) {
+		cout << "Product does not exist" << endl;
+        startProgram();
+    }
     cout << "======================================"<<endl;
     Stock s;
     Product p;

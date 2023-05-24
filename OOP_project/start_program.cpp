@@ -7,6 +7,7 @@
 #include "product_tag.h"
 #include "product_db.h"
 #include "cart.h"
+#include "Loyality.h"
 //#include "Product.h"
 
 Cashier cashier_db;
@@ -75,7 +76,7 @@ void startCashierPov(CASHIER& cashier) {
 void newOrder(CART& cart) {
     int order_option;
 
-    std::vector<std::string> order_options = { "1. Add a product to the order", "2. Remove a product from the order", "3. Finish the order" };
+    std::vector<std::string> order_options = { "1. Add a product to the order", "2. Remove a product from the order", "3. Use Loyalty points" , "3. Finish the order" };
     for (int i = 0; i < order_options.size(); i++) {
         std::cout << order_options[i] << std::endl;
     }
@@ -93,11 +94,14 @@ void newOrder(CART& cart) {
 		removeItemFromCart(cart, product_db);
 	}
     if (order_option == 3) {
+		// using loyalty points
+	}
+    if (order_option == 4) {
         cart.checkout(product_db);
     }
 
     std::cout << "Chosse an option:\n 1. continue\n 2. exit" << std::endl;
-    int end_option;
+    int end_option; 
     std::cin >> end_option;
     intgerRangeValidation(end_option, 1, 3);
     if (end_option == 1) {
@@ -106,6 +110,57 @@ void newOrder(CART& cart) {
 
 
 }
+
+//function takes total price and returns the total price  after using loyalty points 
+int useLoyaltyPoints(int total_price ) {
+    std::string phone_number;
+    std::cout << "Enter customer's phone number: " << std::endl;
+    std::cin >> phone_number;
+    std::string prefix = phone_number.substr(0, 3);
+    while (phone_number.length() != 11 || prefix != "011" || prefix != "012" || prefix != "015") {
+		std::cout << "Invalid phone number, please try again: " << std::endl;
+		std::cin >> phone_number;
+	}
+    
+    //getobjectfromdb
+    //getloyaltypoints
+    LoyaltySystem customer;
+    std::cout<< "Customer has " <<customer.getLoyaltyPoints()<< " points"<<endl;
+    std::cout << "Points are translated to " << customer.pointsInMoney() << " pounds" << std::endl;
+    std::cout << "Do you want to use points?\n\t 1. Yes\n\t 2. No" << std::endl;
+    int option;
+    std::cin >> option;
+    intgerRangeValidation(option, 1, 2);
+    if (option == 1) {
+        int points;
+        std::cout << "Enter the number of points you want to use: " << std::endl;
+        std::cin >> points;
+        while (points > customer.getLoyaltyPoints()) {
+            std::cout << "You don't have enough points please reenter the number of points you want to use: " << std::endl;
+            std::cin >> points;
+        } 
+        //validation of points and converting to money
+        std::cout <<"Are you sure you want to use " << points << " points?( 1.Yes or 2. no)" << std::endl;
+        int answer;
+        std::cin >> answer;
+        while (answer != 1|| answer != 2 ){
+			std::cout << "Invalid answer, please try again: " << std::endl;
+			std::cin >> answer;
+		}
+        if (answer == 1) {
+            customer.deductLoyaltyPoints(points);
+            std::cout << "You have " << customer.getLoyaltyPoints() << " points left" << std::endl;
+            total_price -= customer.convertPointsToMoney(points);
+        }
+
+        return total_price;
+        }
+	else {
+		return total_price;
+}
+}
+    
+    
 void addItemToCart(CART& cart, Product& product_db) {
     while (true) {
         product_db.printProductDataBase();
@@ -131,6 +186,7 @@ void addItemToCart(CART& cart, Product& product_db) {
     }
     newOrder(cart);
 }
+
 void removeItemFromCart(CART& cart, Product& product_db) {
     while (true) {
         std::cout << std::endl;
@@ -158,6 +214,7 @@ void removeItemFromCart(CART& cart, Product& product_db) {
 	}
     newOrder(cart);
 }
+
 
 
 

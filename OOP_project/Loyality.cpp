@@ -4,7 +4,10 @@
 
 using namespace std;
 
-LoyaltySystem::LoyaltySystem(const std::string& phoneNumber) {
+LoyaltySystem::LoyaltySystem(){
+}
+
+LoyaltySystem::LoyaltySystem( std::string phoneNumber) {
     this->phoneNumber = phoneNumber;
     loyaltyPoints = 0;
 }
@@ -23,8 +26,15 @@ void LoyaltySystem::addPointsByPurchase(int totalPrice) {
     cout << pointsToAdd << " loyalty points added to LoyaltySystem with phone number " << phoneNumber << "." << endl;
 }
 
+
+double LoyaltySystem::convertPointsToMoney(int points) {
+	double money = points * 0.01; // Assuming 1 loyalty point equals $0.01
+	cout << points << " loyalty points converted to $" << money << " for LoyaltySystem with phone number " << phoneNumber << "." << endl;
+	return money;
+}
+
 // Method to convert loyalty points to actual money
-double LoyaltySystem::convertPointsToMoney() {
+double LoyaltySystem::pointsInMoney(){
     double money = loyaltyPoints * 0.01; // Assuming 1 loyalty point equals $0.01
     cout << loyaltyPoints << " loyalty points converted to $" << money << " for LoyaltySystem with phone number " << phoneNumber << "." << endl;
     loyaltyPoints = 0; // Reset loyalty points after conversion
@@ -33,13 +43,11 @@ double LoyaltySystem::convertPointsToMoney() {
 
 void LoyaltySystem::addLoyaltyPoints(int points) {
     loyaltyPoints += points;
-    cout << points << " loyalty points added to LoyaltySystem with phone number " << phoneNumber << "." << endl;
 }
 
 void LoyaltySystem::deductLoyaltyPoints(int points) {
     if (loyaltyPoints >= points) {
         loyaltyPoints -= points;
-        cout << points << " loyalty points deducted from LoyaltySystem with phone number " << phoneNumber << "." << endl;
     }
     else {
         cout << "Insufficient loyalty points in LoyaltySystem with phone number " << phoneNumber << "." << endl;

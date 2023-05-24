@@ -148,6 +148,7 @@
     <ClCompile Include="Cashier_db.h" />
     <ClCompile Include="Chashier_db.cpp" />
     <ClCompile Include="gpt_implementation.cpp" />
+    <ClCompile Include="Loyality.cpp" />
     <ClCompile Include="product_db.cpp" />
     <ClCompile Include="product_tag.cpp" />
     <ClCompile Include="sqlite3.c" />
@@ -164,7 +165,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="product.cpp" />
-    <ClCompile Include="SupplierContact.cpp" />
+    <ClCompile Include="Stock.cpp" />
     <ClCompile Include="supplier_tag.cpp" />
     <ClCompile Include="testing 2.cpp" />
     <ClCompile Include="allocation_metrics.cpp" />
@@ -180,13 +181,14 @@
     <ClInclude Include="employee.h" />
     <ClInclude Include="gpt_implementation.h" />
     <ClInclude Include="json.hpp" />
+    <ClInclude Include="Loyality.h" />
     <ClInclude Include="openai.hpp" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Product.h" />
     <ClInclude Include="product_db.h" />
     <ClInclude Include="product_tag.h" />
+    <ClInclude Include="Stock.h" />
     <ClInclude Include="Supplier.h" />
-    <ClInclude Include="SupplierContact.h" />
     <ClInclude Include="supplier_tag.h" />
     <ClInclude Include="useful_tools.h" />
   </ItemGroup>
